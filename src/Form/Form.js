@@ -1,5 +1,6 @@
 import React, {PureComponent} from 'react'
 import {FormContext, FormContextProvider} from './FormContext'
+import Text from '../Text'
 
 class Form extends PureComponent {
     render() {
@@ -17,5 +18,7 @@ class Form extends PureComponent {
         )
     }
 }
+
+Form.Text = Text;
 
 export default Form
