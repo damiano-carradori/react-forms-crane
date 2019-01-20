@@ -1,32 +1,53 @@
-import React, {createContext, PureComponent} from 'react'
+import React, {createContext, Component} from 'react'
 
 export const FormContext = createContext(null);
 
-export class FormContextProvider extends PureComponent {
+export class FormContextProvider extends Component {
     constructor(props) {
         super(props);
+
         this.onSubmit = this.onSubmit.bind(this);
         this.onChange = this.onChange.bind(this);
+        this.onMount = this.onMount.bind(this);
+
         this.state = {
             onSubmit: this.onSubmit,
             onChange: this.onChange,
-            fields: null,
+            onMount: this.onMount,
+            fields: {},
+            values: {}
         }
+    }
+
+    shouldComponentUpdate(nextProps) {
+        const {onSubmit} = this.props;
+        return onSubmit !== nextProps.onSubmit;
     }
 
     onSubmit(event) {
         event.preventDefault();
         const {onSubmit} = this.props;
-        onSubmit(this.state.fields);
+        onSubmit(this.state.values);
     }
 
     onChange({target}) {
         const {name, value} = target;
 
+        this.setState(({values}) => ({
+            values: {
+                ...values,
+                [name]: value || undefined,
+            },
+        }));
+    }
+
+    onMount(field){
+        const {name} = field;
+
         this.setState(({fields}) => ({
             fields: {
                 ...fields,
-                [name]: value || undefined
+                [name]: field,
             }
         }));
     }
