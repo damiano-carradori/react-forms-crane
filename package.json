@@ -3,17 +3,17 @@
   "version": "0.0.0",
   "description": "Test for publish on npm",
   "main": "build/index.js",
-  "peerDependencies": {
-    "react": "^16.7.0"
-  },
-  "dependencies": {
-    "react": "^16.7.0"
-  },
   "scripts": {
     "start": "webpack --watch",
     "build": "webpack"
   },
+  "dependencies": {
+  },
+  "peerDependencies": {
+    "react": "^16.7.0"
+  },
   "devDependencies": {
+    "react": "^16.7.0",
     "@babel/core": "^7.2.2",
     "@babel/preset-env": "^7.2.3",
     "@babel/preset-react": "^7.0.0",
