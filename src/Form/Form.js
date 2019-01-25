@@ -3,6 +3,7 @@ import { FormContext, FormContextProvider } from './FormContext'
 import Text from '../Text'
 import Checkbox from '../Checkbox'
 import RadioButton from '../RadioButton'
+import Password from '../Password'
 
 class Form extends PureComponent {
     render() {
@@ -24,5 +25,6 @@ class Form extends PureComponent {
 Form.Text = Text;
 Form.Checkbox = Checkbox;
 Form.RadioButton = RadioButton;
+Form.Password = Password;
 
 export default Form

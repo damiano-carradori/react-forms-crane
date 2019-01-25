@@ -1,11 +1,11 @@
 # React Forms-crane 🏗️
 
-###Fields
+### Fields
 
 - [x] Text
 - [x] Checkbox
 - [x] RadioButton
-- [ ] Password
+- [x] Password
 - [ ] Date
 - [ ] Select
 - [ ] TextArea
