@@ -36,23 +36,25 @@ class Text extends Component {
 
         const { onChange } = this.context;
         return (
-            <input
-                ref={this.elemRef}
-                type="text"
-                onChange={onChange}
+            <div>
+                <input
+                    ref={this.elemRef}
+                    type="text"
+                    onChange={onChange}
 
-                name={name}
-                defaultValue={defaultValue}
-                readOnly={readOnly}
-                disabled={disabled}
-                size={size}
-                maxLength={maxLength}
-                autoComplete={autoComplete}
-                autoFocus={autoFocus}
-                pattern={pattern}
-                placeholder={placeholder}
-                required={required}
-            />
+                    name={name}
+                    defaultValue={defaultValue}
+                    readOnly={readOnly}
+                    disabled={disabled}
+                    size={size}
+                    maxLength={maxLength}
+                    autoComplete={autoComplete}
+                    autoFocus={autoFocus}
+                    pattern={pattern}
+                    placeholder={placeholder}
+                    required={required}
+                />
+            </div>
         );
     }
 }
