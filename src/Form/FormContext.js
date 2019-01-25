@@ -66,7 +66,6 @@ export class FormContextProvider extends Component {
 
     onMount(field) {
         const { name, type, ref } = field;
-        console.log(ref);
 
         this.setState(({ fields, values }) => {
             let content;
