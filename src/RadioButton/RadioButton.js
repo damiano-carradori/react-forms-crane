@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { kebab_case } from '../utils';
 import { FormContext } from '../Form'
 
-class Checkbox extends Component {
+class RadioButton extends Component {
     constructor(props) {
         super(props);
         this.elemRef = createRef();
@@ -15,7 +15,7 @@ class Checkbox extends Component {
 
         onMount({
             name,
-            type: 'checkbox',
+            type: 'radio',
             ref: this.elemRef.current,
         });
     }
@@ -34,12 +34,12 @@ class Checkbox extends Component {
         } = this.props;
 
         const { onChange } = this.context;
-        const id = `checkbox_${name}_${kebab_case(label)}`;
+        const id = `radio_${name}_${kebab_case(label)}`;
         return (
             <div>
                 <input
                     ref={this.elemRef}
-                    type="checkbox"
+                    type="radio"
                     name={name}
                     id={id}
                     onChange={onChange}
@@ -56,9 +56,9 @@ class Checkbox extends Component {
     }
 }
 
-Checkbox.contextType = FormContext;
+RadioButton.contextType = FormContext;
 
-Checkbox.propTypes = {
+RadioButton.propTypes = {
     name: PropTypes.string.isRequired,
     defaultValue: PropTypes.string,
     value: PropTypes.string,
@@ -67,9 +67,11 @@ Checkbox.propTypes = {
     size: PropTypes.number,
     maxLength: PropTypes.number,
     autoFocus: PropTypes.bool,
+    pattern: PropTypes.string,
+    placeholder: PropTypes.string,
     required: PropTypes.bool,
 };
 
-Checkbox.defaultProps = {};
+RadioButton.defaultProps = {};
 
-export default Checkbox
+export default RadioButton

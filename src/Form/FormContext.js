@@ -31,16 +31,14 @@ export class FormContextProvider extends Component {
     }
 
     onChange({ target }) {
-        const { name, value } = target;
+        const { name, value, checked } = target;
 
         this.setState(({ fields, values }) => {
 
-            let content;
+            let content = values[name];
 
             switch (fields[name].type) {
                 case 'checkbox':
-                    const { checked } = target;
-                    content = values[name] || [];
                     if (checked) {
                         content = [...content, value];
                     } else {
@@ -49,6 +47,11 @@ export class FormContextProvider extends Component {
                             ...content.slice(0, position),
                             ...content.slice(position + 1),
                         ];
+                    }
+                    break;
+                case 'radio':
+                    if (checked) {
+                        content = value;
                     }
                     break;
                 default:
@@ -73,10 +76,15 @@ export class FormContextProvider extends Component {
 
             switch (type) {
                 case 'checkbox':
-                    const { checked } = ref;
                     content = values[name] || [];
-                    if (checked) {
+                    if (ref.checked) {
                         content = [...content, value];
+                    }
+                    break;
+                case 'radio':
+                    content = values[name] || null;
+                    if (ref.checked) {
+                        content = value;
                     }
                     break;
                 default:
