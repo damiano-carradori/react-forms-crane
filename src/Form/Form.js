@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react'
 import { FormContext, FormContextProvider } from './FormContext'
 import Text from '../Text'
 import Checkbox from '../Checkbox'
+import RadioButton from '../RadioButton'
 
 class Form extends PureComponent {
     render() {
@@ -22,5 +23,6 @@ class Form extends PureComponent {
 
 Form.Text = Text;
 Form.Checkbox = Checkbox;
+Form.RadioButton = RadioButton;
 
 export default Form
