@@ -1,10 +1,11 @@
-import React, { Component } from 'react'
+import React, { Component, createRef } from 'react'
 import PropTypes from 'prop-types'
 import { FormContext } from '../Form'
 
 class Text extends Component {
     constructor(props) {
         super(props);
+        this.elemRef = createRef();
     }
 
     componentDidMount() {
@@ -14,6 +15,7 @@ class Text extends Component {
         onMount({
             name,
             type: 'text',
+            ref: this.elemRef.current,
         });
     }
 
@@ -35,6 +37,7 @@ class Text extends Component {
         const { onChange } = this.context;
         return (
             <input
+                ref={this.elemRef}
                 type="text"
                 onChange={onChange}
 
