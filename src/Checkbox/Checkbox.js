@@ -29,10 +29,7 @@ class Checkbox extends Component {
             defaultValue,
             value,
             disabled,
-            autoComplete,
             autoFocus,
-            pattern,
-            placeholder,
             required,
         } = this.props;
 
@@ -47,19 +44,11 @@ class Checkbox extends Component {
                     id={id}
                     onChange={onChange}
 
-                    defaultChecked={defaultChecked || checked}
-
-                    defaultValue={defaultValue || value || id}
-
-                    disabled={disabled}
-                    autoComplete={autoComplete}
-
                     autoFocus={autoFocus}
-
-                    pattern={pattern}
-                    placeholder={placeholder}
-
                     required={required}
+                    disabled={disabled}
+                    defaultChecked={defaultChecked || checked}
+                    defaultValue={defaultValue || value || id}
                 />
                 {label && <label htmlFor={id}>{label}</label>}
             </div>
@@ -77,10 +66,7 @@ Checkbox.propTypes = {
     disabled: PropTypes.bool,
     size: PropTypes.number,
     maxLength: PropTypes.number,
-    autoComplete: PropTypes.oneOf(['on', 'off']),
     autoFocus: PropTypes.bool,
-    pattern: PropTypes.string,
-    placeholder: PropTypes.string,
     required: PropTypes.bool,
 };
 
