@@ -23,9 +23,7 @@ class RadioButton extends Component {
     render() {
         const {
             label,
-
             name,
-
             defaultChecked,
             checked,
             defaultValue,
