@@ -65,14 +65,36 @@ export class FormContextProvider extends Component {
     }
 
     onMount(field) {
-        const { name } = field;
+        const { name, type, ref } = field;
+        console.log(ref);
 
-        this.setState(({ fields }) => ({
-            fields: {
-                ...fields,
-                [name]: field,
-            },
-        }));
+        this.setState(({ fields, values }) => {
+            let content;
+            const { value } = ref;
+
+            switch (type) {
+                case 'checkbox':
+                    const { checked } = ref;
+                    content = values[name] || [];
+                    if (checked) {
+                        content = [...content, value];
+                    }
+                    break;
+                default:
+                    content = value;
+            }
+
+            return {
+                fields: {
+                    ...fields,
+                    [name]: field,
+                },
+                values: {
+                    ...values,
+                    [name]: content,
+                },
+            }
+        });
     }
 
     render() {
