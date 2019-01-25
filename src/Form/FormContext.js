@@ -33,23 +33,67 @@ export class FormContextProvider extends Component {
     onChange({ target }) {
         const { name, value } = target;
 
-        this.setState(({ values }) => ({
-            values: {
-                ...values,
-                [name]: value || undefined,
-            },
-        }));
+        this.setState(({ fields, values }) => {
+
+            let content;
+
+            switch (fields[name].type) {
+                case 'checkbox':
+                    const { checked } = target;
+                    content = values[name] || [];
+                    if (checked) {
+                        content = [...content, value];
+                    } else {
+                        const position = content.indexOf(value);
+                        content = [
+                            ...content.slice(0, position),
+                            ...content.slice(position + 1),
+                        ];
+                    }
+                    break;
+                default:
+                    content = value;
+            }
+
+            return {
+                values: {
+                    ...values,
+                    [name]: content,
+                },
+            }
+        });
     }
 
     onMount(field) {
-        const { name } = field;
+        const { name, type, ref } = field;
 
-        this.setState(({ fields }) => ({
-            fields: {
-                ...fields,
-                [name]: field,
-            },
-        }));
+        this.setState(({ fields, values }) => {
+            let content;
+            const { value } = ref;
+
+            switch (type) {
+                case 'checkbox':
+                    const { checked } = ref;
+                    content = values[name] || [];
+                    if (checked) {
+                        content = [...content, value];
+                    }
+                    break;
+                default:
+                    content = value;
+            }
+
+            return {
+                fields: {
+                    ...fields,
+                    [name]: field,
+                },
+                values: {
+                    ...values,
+                    [name]: content,
+                },
+            }
+        });
     }
 
     render() {

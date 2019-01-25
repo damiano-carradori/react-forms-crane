@@ -1,8 +1,9 @@
 import React, { Component, createRef } from 'react'
 import PropTypes from 'prop-types'
+import { kebab_case } from '../utils';
 import { FormContext } from '../Form'
 
-class Text extends Component {
+class Checkbox extends Component {
     constructor(props) {
         super(props);
         this.elemRef = createRef();
@@ -14,19 +15,20 @@ class Text extends Component {
 
         onMount({
             name,
-            type: 'text',
+            type: 'checkbox',
             ref: this.elemRef.current,
         });
     }
 
     render() {
         const {
+            label,
             name,
+            defaultChecked,
+            checked,
             defaultValue,
-            readOnly,
+            value,
             disabled,
-            size,
-            maxLength,
             autoComplete,
             autoFocus,
             pattern,
@@ -35,35 +37,42 @@ class Text extends Component {
         } = this.props;
 
         const { onChange } = this.context;
+        const id = `checkbox_${name}_${kebab_case(label)}`;
         return (
             <div>
                 <input
                     ref={this.elemRef}
-                    type="text"
+                    type="checkbox"
+                    name={name}
+                    id={id}
                     onChange={onChange}
 
-                    name={name}
-                    defaultValue={defaultValue}
-                    readOnly={readOnly}
+                    defaultChecked={defaultChecked || checked}
+
+                    defaultValue={defaultValue || value || id}
+
                     disabled={disabled}
-                    size={size}
-                    maxLength={maxLength}
                     autoComplete={autoComplete}
+
                     autoFocus={autoFocus}
+
                     pattern={pattern}
                     placeholder={placeholder}
+
                     required={required}
                 />
+                {label && <label htmlFor={id}>{label}</label>}
             </div>
         );
     }
 }
 
-Text.contextType = FormContext;
+Checkbox.contextType = FormContext;
 
-Text.propTypes = {
+Checkbox.propTypes = {
     name: PropTypes.string.isRequired,
     defaultValue: PropTypes.string,
+    value: PropTypes.string,
     readOnly: PropTypes.bool,
     disabled: PropTypes.bool,
     size: PropTypes.number,
@@ -75,6 +84,6 @@ Text.propTypes = {
     required: PropTypes.bool,
 };
 
-Text.defaultProps = {};
+Checkbox.defaultProps = {};
 
-export default Text
+export default Checkbox
