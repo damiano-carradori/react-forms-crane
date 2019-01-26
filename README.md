@@ -6,8 +6,8 @@
 - [x] Checkbox
 - [x] RadioButton
 - [x] Password
-- [ ] Date
-- [ ] Select
+- [x] Select
 - [ ] TextArea
 - [ ] Button
 - [ ] File
+- [ ] Date
