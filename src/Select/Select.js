@@ -48,20 +48,22 @@ class Select extends Component {
         const renderedOptions = options.map(this.renderOption);
 
         return (
-            <select
-                ref={this.elemRef}
-                onChange={onChange}
-                name={name}
+            <div>
+                <select
+                    ref={this.elemRef}
+                    onChange={onChange}
+                    name={name}
 
-                multiple={multiple}
-                value={value}
-                size={size}
-                autoFocus={autoFocus}
-                required={required}
-                disabled={disabled}
-            >
-                {renderedOptions}
-            </select>
+                    multiple={multiple}
+                    value={value}
+                    size={size}
+                    autoFocus={autoFocus}
+                    required={required}
+                    disabled={disabled}
+                >
+                    {renderedOptions}
+                </select>
+            </div>
         );
     }
 }
