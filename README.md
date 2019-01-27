@@ -1,6 +1,6 @@
 # React Forms-crane 🏗️
 
-### Fields
+### Available Fields
 
 - [x] Text
 - [x] Checkbox
@@ -9,5 +9,28 @@
 - [x] Select
 - [x] TextArea
 - [x] File
-- [ ] Button
+- [x] Button
+- [x] Submit
+- [x] Reset
+
+### Missing fields
+
+- [ ] Search
+- [ ] Number
+- [ ] Email
+- [ ] Hidden
+- [ ] Color
+- [ ] Image
+- [ ] Range
+- [ ] Url
 - [ ] Date
+- [ ] DateTime
+- [ ] DateTimeLocal
+- [ ] Time
+- [ ] Month
+- [ ] Week
+
+### Other elements
+
+- [ ] Fieldset
+- [ ] Legend
