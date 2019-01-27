@@ -7,7 +7,7 @@
 - [x] RadioButton
 - [x] Password
 - [x] Select
-- [ ] TextArea
+- [x] TextArea
 - [ ] Button
 - [ ] File
 - [ ] Date

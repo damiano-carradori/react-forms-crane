@@ -5,6 +5,7 @@ import Checkbox from '../Checkbox'
 import RadioButton from '../RadioButton'
 import Password from '../Password'
 import Select from '../Select'
+import TextArea from '../TextArea'
 
 class Form extends PureComponent {
     render() {
@@ -28,5 +29,6 @@ Form.Checkbox = Checkbox;
 Form.RadioButton = RadioButton;
 Form.Password = Password;
 Form.Select = Select;
+Form.TextArea = TextArea;
 
 export default Form
