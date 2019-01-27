@@ -3,12 +3,18 @@
   "version": "0.0.0",
   "description": "Test for publish on npm",
   "main": "build/index.js",
+  "repository": "github:damiano-carradori/react-forms-crane",
+  "keywords": [
+    "react",
+    "forms",
+    "form"
+  ],
+  "license": "MIT",
   "scripts": {
     "start": "webpack --watch",
     "build": "webpack"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "peerDependencies": {
     "react": "^16.7.0"
   },
@@ -20,6 +26,7 @@
     "babel-loader": "^8.0.5",
     "webpack": "^4.28.4",
     "webpack-cli": "^3.2.1",
-    "prop-types": "^15.6.2"
+    "prop-types": "^15.6.2",
+    "np": "^4.0.2"
   }
 }
