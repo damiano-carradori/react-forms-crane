@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 class Reset extends Component {
     render() {
         const {
+            value,
             disabled,
             autoFocus,
         } = this.props;
@@ -13,6 +14,7 @@ class Reset extends Component {
                 <input
                     type="reset"
 
+                    value={value}
                     disabled={disabled}
                     autoFocus={autoFocus}
                 />
