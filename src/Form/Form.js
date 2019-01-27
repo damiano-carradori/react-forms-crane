@@ -7,6 +7,9 @@ import Password from '../Password'
 import Select from '../Select'
 import TextArea from '../TextArea'
 import File from '../File'
+import Button from '../Button'
+import Submit from '../Submit'
+import Reset from '../Reset'
 
 class Form extends PureComponent {
     render() {
@@ -32,5 +35,8 @@ Form.Password = Password;
 Form.Select = Select;
 Form.TextArea = TextArea;
 Form.File = File;
+Form.Button = Button;
+Form.Submit = Submit;
+Form.Reset = Reset;
 
 export default Form
