@@ -54,6 +54,10 @@ export class FormContextProvider extends Component {
                         content = value;
                     }
                     break;
+                case 'file':
+                    const { files } = target;
+                    content = files;
+                    break;
                 default:
                     content = value;
             }
