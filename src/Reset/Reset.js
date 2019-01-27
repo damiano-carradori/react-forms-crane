@@ -24,6 +24,7 @@ class Reset extends Component {
 }
 
 Reset.propTypes = {
+    value: PropTypes.string,
     disabled: PropTypes.bool,
     autoFocus: PropTypes.bool,
 };
