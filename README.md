@@ -8,6 +8,6 @@
 - [x] Password
 - [x] Select
 - [x] TextArea
+- [x] File
 - [ ] Button
-- [ ] File
 - [ ] Date

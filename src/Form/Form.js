@@ -6,6 +6,7 @@ import RadioButton from '../RadioButton'
 import Password from '../Password'
 import Select from '../Select'
 import TextArea from '../TextArea'
+import File from '../File'
 
 class Form extends PureComponent {
     render() {
@@ -30,5 +31,6 @@ Form.RadioButton = RadioButton;
 Form.Password = Password;
 Form.Select = Select;
 Form.TextArea = TextArea;
+Form.File = File;
 
 export default Form
