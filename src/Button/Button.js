@@ -4,10 +4,8 @@ import PropTypes from 'prop-types'
 class Button extends Component {
     render() {
         const {
-            name,
             value,
             disabled,
-            autoFocus,
             onClick,
         } = this.props;
 
@@ -17,10 +15,8 @@ class Button extends Component {
                     type="button"
                     onClick={onClick}
 
-                    name={name}
                     value={value}
                     disabled={disabled}
-                    autoFocus={autoFocus}
                 />
             </div>
         );
@@ -28,10 +24,8 @@ class Button extends Component {
 }
 
 Button.propTypes = {
-    name: PropTypes.string.isRequired,
     value: PropTypes.string.isRequired,
     disabled: PropTypes.bool,
-    autoFocus: PropTypes.bool,
     onClick: PropTypes.func,
 };
 
