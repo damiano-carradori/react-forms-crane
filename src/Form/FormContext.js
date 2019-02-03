@@ -1,4 +1,5 @@
 import React, { Component, createContext } from 'react'
+import { mapObject } from '../utils';
 
 export const FormContext = createContext(null);
 
@@ -26,8 +27,20 @@ export class FormContextProvider extends Component {
 
     onSubmit(event) {
         event.preventDefault();
+        const { values } = this.state;
         const { onSubmit } = this.props;
-        onSubmit(this.state.values);
+
+        const returnValues = mapObject(values, value => {
+            if (typeof value !== 'object' || value === null) {
+                return value;
+            }
+            if (Object.keys(value).length === 1) {
+                return Object.values(value)[0];
+            }
+            return Object.keys(value).filter(item => value[item])
+        });
+
+        onSubmit(returnValues);
     }
 
     onChange({ target }) {
@@ -39,15 +52,10 @@ export class FormContextProvider extends Component {
 
             switch (fields[name].type) {
                 case 'checkbox':
-                    if (checked) {
-                        content = [...content, value];
-                    } else {
-                        const position = content.indexOf(value);
-                        content = [
-                            ...content.slice(0, position),
-                            ...content.slice(position + 1),
-                        ];
-                    }
+                    content = {
+                        ...content,
+                        [value]: checked,
+                    };
                     break;
                 case 'radio':
                     if (checked) {
@@ -80,10 +88,10 @@ export class FormContextProvider extends Component {
 
             switch (type) {
                 case 'checkbox':
-                    content = values[name] || [];
-                    if (ref.checked) {
-                        content = [...content, value];
-                    }
+                    content = {
+                        ...(values[name] && values[name]),
+                        [value]: ref.checked,
+                    };
                     break;
                 case 'radio':
                     content = values[name] || null;
