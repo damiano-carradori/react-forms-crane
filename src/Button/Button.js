@@ -1,30 +1,27 @@
-import React, { Component } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 
-class Button extends Component {
-    render() {
-        const {
-            name,
-            value,
-            disabled,
-            autoFocus,
-            onClick,
-        } = this.props;
+function Button({
+                    name,
+                    value,
+                    disabled,
+                    autoFocus,
+                    onClick,
+                }) {
 
-        return (
-            <div>
-                <input
-                    type="button"
-                    onClick={onClick}
+    return (
+        <div>
+            <input
+                type="button"
+                onClick={onClick}
 
-                    name={name}
-                    value={value}
-                    disabled={disabled}
-                    autoFocus={autoFocus}
-                />
-            </div>
-        );
-    }
+                name={name}
+                value={value}
+                disabled={disabled}
+                autoFocus={autoFocus}
+            />
+        </div>
+    );
 }
 
 Button.propTypes = {
@@ -35,7 +32,6 @@ Button.propTypes = {
     onClick: PropTypes.func,
 };
 
-Button.defaultProps = {
-};
+Button.defaultProps = {};
 
 export default Button
