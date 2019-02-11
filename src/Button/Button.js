@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 function Button({
-                    name,
                     value,
                     disabled,
                     autoFocus,
@@ -15,7 +14,6 @@ function Button({
                 type="button"
                 onClick={onClick}
 
-                name={name}
                 value={value}
                 disabled={disabled}
                 autoFocus={autoFocus}
@@ -25,7 +23,6 @@ function Button({
 }
 
 Button.propTypes = {
-    name: PropTypes.string.isRequired,
     value: PropTypes.string.isRequired,
     disabled: PropTypes.bool,
     autoFocus: PropTypes.bool,
