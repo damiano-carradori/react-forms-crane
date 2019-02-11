@@ -1,59 +1,51 @@
-import React, { Component, createRef } from 'react'
+import React, { useContext, useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
 import { FormContext } from '../Form'
 
-class File extends Component {
-    constructor(props) {
-        super(props);
-        this.elemRef = createRef();
-    }
+function File({
+                  name,
+                  label,
+                  accept,
+                  multiple,
+                  disabled,
+                  autoFocus,
+                  required,
+              }) {
 
-    componentDidMount() {
-        const { name } = this.props;
-        const { onMount } = this.context;
+    const { onMount, onChange } = useContext(FormContext);
 
-        onMount({
-            name,
-            type: 'file',
-            ref: this.elemRef.current,
-        });
-    }
+    const elemRef = useRef();
 
-    render() {
-        const {
-            name,
-            label,
-            accept,
-            multiple,
-            disabled,
-            autoFocus,
-            required,
-        } = this.props;
+    useEffect(() => {
+        if (elemRef.current !== undefined) {
+            onMount({
+                name,
+                type: 'checkbox',
+                ref: elemRef.current,
+            });
+        }
+    }, [elemRef]);
 
-        const { onChange } = this.context;
-        const id = `file_${name}`;
-        return (
-            <div>
-                <input
-                    ref={this.elemRef}
-                    type="file"
-                    id={id}
-                    onChange={onChange}
+    const id = `file_${name}`;
+    return (
+        <div>
+            <input
+                ref={elemRef}
+                type="file"
+                id={id}
+                onChange={onChange}
 
-                    name={name}
-                    accept={accept}
-                    multiple={multiple}
-                    disabled={disabled}
-                    autoFocus={autoFocus}
-                    required={required}
-                />
-                {label && <label htmlFor={id}>{label}</label>}
-            </div>
-        );
-    }
+                name={name}
+                accept={accept}
+                multiple={multiple}
+                disabled={disabled}
+                autoFocus={autoFocus}
+                required={required}
+            />
+            {label && <label htmlFor={id}>{label}</label>}
+        </div>
+    );
 }
-
-File.contextType = FormContext;
 
 File.propTypes = {
     name: PropTypes.string.isRequired,
