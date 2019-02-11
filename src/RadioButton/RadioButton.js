@@ -1,59 +1,53 @@
-import React, { Component, createRef } from 'react'
+import React, { useContext, useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
 import { kebab_case } from '../utils';
 import { FormContext } from '../Form'
 
-class RadioButton extends Component {
-    constructor(props) {
-        super(props);
-        this.elemRef = createRef();
-    }
+function RadioButton({
+                         label,
+                         name,
+                         defaultChecked,
+                         checked,
+                         defaultValue,
+                         value,
+                         disabled,
+                         autoFocus,
+                         required,
+                     }) {
 
-    componentDidMount() {
-        const { name } = this.props;
-        const { onMount } = this.context;
+    const { onMount, onChange } = useContext(FormContext);
 
-        onMount({
-            name,
-            type: 'radio',
-            ref: this.elemRef.current,
-        });
-    }
+    const elemRef = useRef();
 
-    render() {
-        const {
-            label,
-            name,
-            defaultChecked,
-            checked,
-            defaultValue,
-            value,
-            disabled,
-            autoFocus,
-            required,
-        } = this.props;
+    useEffect(() => {
+        if (elemRef.current !== undefined) {
+            onMount({
+                name,
+                type: 'radio',
+                ref: elemRef.current,
+            });
+        }
+    }, [elemRef]);
 
-        const { onChange } = this.context;
-        const id = `radio_${name}_${kebab_case(label)}`;
-        return (
-            <div>
-                <input
-                    ref={this.elemRef}
-                    type="radio"
-                    name={name}
-                    id={id}
-                    onChange={onChange}
+    const id = `radio_${name}_${kebab_case(label)}`;
+    return (
+        <div>
+            <input
+                ref={this.elemRef}
+                type="radio"
+                name={name}
+                id={id}
+                onChange={onChange}
 
-                    autoFocus={autoFocus}
-                    required={required}
-                    disabled={disabled}
-                    defaultChecked={defaultChecked || checked}
-                    defaultValue={defaultValue || value || id}
-                />
-                {label && <label htmlFor={id}>{label}</label>}
-            </div>
-        );
-    }
+                autoFocus={autoFocus}
+                required={required}
+                disabled={disabled}
+                defaultChecked={defaultChecked || checked}
+                defaultValue={defaultValue || value || id}
+            />
+            {label && <label htmlFor={id}>{label}</label>}
+        </div>
+    );
 }
 
 RadioButton.contextType = FormContext;
