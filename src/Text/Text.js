@@ -1,65 +1,56 @@
-import React, { Component, createRef } from 'react'
+import React, { useContext, useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
 import { FormContext } from '../Form'
 
-class Text extends Component {
-    constructor(props) {
-        super(props);
-        this.elemRef = createRef();
-    }
+function Text({
+                  name,
+                  defaultValue,
+                  readOnly,
+                  disabled,
+                  size,
+                  maxLength,
+                  autoComplete,
+                  autoFocus,
+                  pattern,
+                  placeholder,
+                  required,
+              }) {
+    const { onMount, onChange } = useContext(FormContext);
 
-    componentDidMount() {
-        const { name } = this.props;
-        const { onMount } = this.context;
+    const elemRef = useRef();
 
-        onMount({
-            name,
-            type: 'text',
-            ref: this.elemRef.current,
-        });
-    }
+    useEffect(() => {
+        if (elemRef.current !== undefined) {
+            onMount({
+                name,
+                type: 'text',
+                ref: elemRef.current,
+            });
+        }
+    }, [elemRef]);
 
-    render() {
-        const {
-            name,
-            defaultValue,
-            readOnly,
-            disabled,
-            size,
-            maxLength,
-            autoComplete,
-            autoFocus,
-            pattern,
-            placeholder,
-            required,
-        } = this.props;
+    return (
+        <div>
+            <input
+                ref={elemRef}
+                type="text"
+                onChange={onChange}
 
-        const { onChange } = this.context;
-        return (
-            <div>
-                <input
-                    ref={this.elemRef}
-                    type="text"
-                    onChange={onChange}
-
-                    name={name}
-                    defaultValue={defaultValue}
-                    readOnly={readOnly}
-                    disabled={disabled}
-                    size={size}
-                    maxLength={maxLength}
-                    autoComplete={autoComplete}
-                    autoFocus={autoFocus}
-                    pattern={pattern}
-                    placeholder={placeholder}
-                    required={required}
-                />
-            </div>
-        );
-    }
+                name={name}
+                defaultValue={defaultValue}
+                readOnly={readOnly}
+                disabled={disabled}
+                size={size}
+                maxLength={maxLength}
+                autoComplete={autoComplete}
+                autoFocus={autoFocus}
+                pattern={pattern}
+                placeholder={placeholder}
+                required={required}
+            />
+        </div>
+    );
 }
-
-Text.contextType = FormContext;
 
 Text.propTypes = {
     name: PropTypes.string.isRequired,
