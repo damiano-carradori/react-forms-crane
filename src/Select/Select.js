@@ -1,25 +1,33 @@
-import React, { Component, createRef } from 'react'
+import React, { useContext, useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
 import { FormContext } from '../Form'
 
-class Select extends Component {
-    constructor(props) {
-        super(props);
-        this.elemRef = createRef();
-    }
+function Select({
+                    name,
+                    options,
+                    value,
+                    multiple,
+                    autoFocus,
+                    size,
+                    required,
+                    disabled,
+                }) {
 
-    componentDidMount() {
-        const { name } = this.props;
-        const { onMount } = this.context;
+    const { onMount, onChange } = useContext(FormContext);
 
-        onMount({
-            name,
-            type: 'select',
-            ref: this.elemRef.current,
-        });
-    }
+    const elemRef = useRef();
 
-    renderOption(option, index) {
+    useEffect(() => {
+        if (elemRef.current !== undefined) {
+            onMount({
+                name,
+                type: 'select',
+                ref: elemRef.current,
+            });
+        }
+    }, [elemRef]);
+
+    const renderedOptions = options.map((option, index) => {
         let value, label;
         if ('string' === typeof option) {
             value = option;
@@ -29,46 +37,27 @@ class Select extends Component {
             label = option.label;
         }
         return <option key={index} value={value}>{label}</option>
-    }
+    });
 
-    render() {
-        const {
-            name,
-            options,
-            value,
-            multiple,
-            autoFocus,
-            size,
-            required,
-            disabled,
-        } = this.props;
+    return (
+        <div>
+            <select
+                ref={elemRef}
+                onChange={onChange}
+                name={name}
 
-        const { onChange } = this.context;
-
-        const renderedOptions = options.map(this.renderOption);
-
-        return (
-            <div>
-                <select
-                    ref={this.elemRef}
-                    onChange={onChange}
-                    name={name}
-
-                    multiple={multiple}
-                    value={value}
-                    size={size}
-                    autoFocus={autoFocus}
-                    required={required}
-                    disabled={disabled}
-                >
-                    {renderedOptions}
-                </select>
-            </div>
-        );
-    }
+                multiple={multiple}
+                value={value}
+                size={size}
+                autoFocus={autoFocus}
+                required={required}
+                disabled={disabled}
+            >
+                {renderedOptions}
+            </select>
+        </div>
+    );
 }
-
-Select.contextType = FormContext;
 
 Select.propTypes = {
     name: PropTypes.string.isRequired,
