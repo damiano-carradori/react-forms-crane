@@ -1,65 +1,57 @@
-import React, { Component, createRef } from 'react'
+import React, { useContext, useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
 import { FormContext } from '../Form'
 
-class Password extends Component {
-    constructor(props) {
-        super(props);
-        this.elemRef = createRef();
-    }
+function Password({
+                      name,
+                      defaultValue,
+                      readOnly,
+                      disabled,
+                      size,
+                      maxLength,
+                      autoComplete,
+                      autoFocus,
+                      pattern,
+                      placeholder,
+                      required,
+                  }) {
 
-    componentDidMount() {
-        const { name } = this.props;
-        const { onMount } = this.context;
+    const { onMount, onChange } = useContext(FormContext);
 
-        onMount({
-            name,
-            type: 'password',
-            ref: this.elemRef.current,
-        });
-    }
+    const elemRef = useRef();
 
-    render() {
-        const {
-            name,
-            defaultValue,
-            readOnly,
-            disabled,
-            size,
-            maxLength,
-            autoComplete,
-            autoFocus,
-            pattern,
-            placeholder,
-            required,
-        } = this.props;
+    useEffect(() => {
+        if (elemRef.current !== undefined) {
+            onMount({
+                name,
+                type: 'password',
+                ref: elemRef.current,
+            });
+        }
+    }, [elemRef]);
 
-        const { onChange } = this.context;
-        return (
-            <div>
-                <input
-                    ref={this.elemRef}
-                    type="password"
-                    onChange={onChange}
+    return (
+        <div>
+            <input
+                ref={elemRef}
+                type="password"
+                onChange={onChange}
 
-                    name={name}
-                    defaultValue={defaultValue}
-                    readOnly={readOnly}
-                    disabled={disabled}
-                    size={size}
-                    maxLength={maxLength}
-                    autoComplete={autoComplete}
-                    autoFocus={autoFocus}
-                    pattern={pattern}
-                    placeholder={placeholder}
-                    required={required}
-                />
-            </div>
-        );
-    }
+                name={name}
+                defaultValue={defaultValue}
+                readOnly={readOnly}
+                disabled={disabled}
+                size={size}
+                maxLength={maxLength}
+                autoComplete={autoComplete}
+                autoFocus={autoFocus}
+                pattern={pattern}
+                placeholder={placeholder}
+                required={required}
+            />
+        </div>
+    );
 }
-
-Password.contextType = FormContext;
 
 Password.propTypes = {
     name: PropTypes.string.isRequired,
@@ -76,7 +68,7 @@ Password.propTypes = {
 };
 
 Password.defaultProps = {
-    autoComplete: 'on'
+    autoComplete: 'on',
 };
 
 export default Password
