@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React from 'react'
 import { FormContext, FormContextProvider } from './FormContext'
 import Text from '../Text'
 import Checkbox from '../Checkbox'
@@ -11,21 +11,20 @@ import Button from '../Button'
 import Submit from '../Submit'
 import Reset from '../Reset'
 
-class Form extends PureComponent {
-    render() {
-        const { className, children, onSubmit } = this.props;
-        return (
-            <FormContextProvider onSubmit={onSubmit}>
-                <FormContext.Consumer>
-                    {({ onSubmit: contextSubmit }) => (
-                        <form onSubmit={contextSubmit} className={className}>
-                            {children}
-                        </form>
-                    )}
-                </FormContext.Consumer>
-            </FormContextProvider>
-        )
-    }
+function Form(props) {
+    const { className, children, onSubmit } = props;
+    return (
+        <FormContextProvider onSubmit={onSubmit}>
+            <FormContext.Consumer>
+                {({ onSubmit: contextSubmit }) => (
+                    <form onSubmit={contextSubmit} className={className}>
+                        {children}
+                    </form>
+                )}
+            </FormContext.Consumer>
+        </FormContextProvider>
+    )
+
 }
 
 Form.Text = Text;
