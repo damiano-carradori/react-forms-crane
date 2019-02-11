@@ -1,13 +1,14 @@
 const path = require('path');
 
 module.exports = {
-    mode: 'production',
+    mode: 'development',
     entry: './src/index.js',
     output: {
         path: path.resolve(__dirname, 'build'),
         filename: 'index.js',
         libraryTarget: 'commonjs2',
     },
+    devtool: 'cheap-module-source-map',
     module: {
         rules: [
             {
@@ -23,6 +24,11 @@ module.exports = {
         ],
     },
     externals: {
-        'react': 'commonjs react',
+        react: {
+            root: 'React',
+            commonjs2: 'react',
+            commonjs: 'react',
+            amd: 'react',
+        },
     },
 };
