@@ -1,52 +1,33 @@
-import React, { Component, createContext } from 'react'
+import React, { memo, createContext, useState } from 'react'
 import { mapObject } from '../utils';
 
 export const FormContext = createContext(null);
 
-export class FormContextProvider extends Component {
-    constructor(props) {
-        super(props);
+export const FormContextProvider = memo(
+    function FormContextProvider(props) {
 
-        this.onSubmit = this.onSubmit.bind(this);
-        this.onChange = this.onChange.bind(this);
-        this.onMount = this.onMount.bind(this);
+        const [fields, setFields] = useState({});
+        const [values, setValues] = useState({});
 
-        this.state = {
-            onSubmit: this.onSubmit,
-            onChange: this.onChange,
-            onMount: this.onMount,
-            fields: {},
-            values: {},
-        }
-    }
+        const onSubmit = event => {
+            event.preventDefault();
+            const { onSubmit } = props;
 
-    shouldComponentUpdate(nextProps) {
-        const { onSubmit } = this.props;
-        return onSubmit !== nextProps.onSubmit;
-    }
+            const returnValues = mapObject(values, value => {
+                if (typeof value !== 'object' || value === null) {
+                    return value;
+                }
+                if (Object.keys(value).length === 1) {
+                    return Object.values(value)[0];
+                }
+                return Object.keys(value).filter(item => value[item])
+            });
 
-    onSubmit(event) {
-        event.preventDefault();
-        const { values } = this.state;
-        const { onSubmit } = this.props;
+            onSubmit(returnValues);
+        };
 
-        const returnValues = mapObject(values, value => {
-            if (typeof value !== 'object' || value === null) {
-                return value;
-            }
-            if (Object.keys(value).length === 1) {
-                return Object.values(value)[0];
-            }
-            return Object.keys(value).filter(item => value[item])
-        });
-
-        onSubmit(returnValues);
-    }
-
-    onChange({ target }) {
-        const { name, value, checked } = target;
-
-        this.setState(({ fields, values }) => {
+        const onChange = ({ target }) => {
+            const { name, value, checked } = target;
 
             let content = values[name];
 
@@ -70,19 +51,17 @@ export class FormContextProvider extends Component {
                     content = value;
             }
 
-            return {
-                values: {
-                    ...values,
-                    [name]: content,
-                },
-            }
-        });
-    }
+            setValues({
+                ...values,
+                [name]: content,
+            });
 
-    onMount(field) {
-        const { name, type, ref } = field;
+        };
 
-        this.setState(({ fields, values }) => {
+        const onMount = (field) => {
+            console.log('mounted');
+            const { name, type, ref } = field;
+
             let content;
             const { value } = ref;
 
@@ -103,25 +82,32 @@ export class FormContextProvider extends Component {
                     content = value;
             }
 
-            return {
-                fields: {
-                    ...fields,
-                    [name]: field,
-                },
-                values: {
-                    ...values,
-                    [name]: content,
-                },
-            }
-        });
-    }
+            setFields({
+                ...fields,
+                [name]: field,
+            });
+            setValues({
+                ...values,
+                [name]: content,
+            })
+        };
 
-    render() {
-        const { children } = this.props;
+        const { children } = props;
+
+        const contextValue = {
+            onSubmit,
+            onChange,
+            onMount,
+            fields,
+            values,
+        };
+
         return (
-            <FormContext.Provider value={this.state}>
+            <FormContext.Provider value={contextValue}>
                 {children}
             </FormContext.Provider>
         );
-    }
-}
+
+    },
+    (oldProps, newProps) => oldProps.onSubmit !== newProps.onSubmit,
+);
