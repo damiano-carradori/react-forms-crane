@@ -20,7 +20,7 @@ function File({
         if (elemRef.current !== undefined) {
             onMount({
                 name,
-                type: 'checkbox',
+                type: 'file',
                 ref: elemRef.current,
             });
         }
