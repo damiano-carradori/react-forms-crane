@@ -33,7 +33,7 @@ function RadioButton({
     return (
         <div>
             <input
-                ref={this.elemRef}
+                ref={elemRef}
                 type="radio"
                 name={name}
                 id={id}
