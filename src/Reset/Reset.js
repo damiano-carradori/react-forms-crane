@@ -1,26 +1,23 @@
-import React, { Component } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 
-class Reset extends Component {
-    render() {
-        const {
-            value,
-            disabled,
-            autoFocus,
-        } = this.props;
+function Reset({
+                   value,
+                   disabled,
+                   autoFocus,
+               }) {
 
-        return (
-            <div>
-                <input
-                    type="reset"
+    return (
+        <div>
+            <input
+                type="reset"
 
-                    value={value}
-                    disabled={disabled}
-                    autoFocus={autoFocus}
-                />
-            </div>
-        );
-    }
+                value={value}
+                disabled={disabled}
+                autoFocus={autoFocus}
+            />
+        </div>
+    );
 }
 
 Reset.propTypes = {
