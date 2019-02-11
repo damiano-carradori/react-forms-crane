@@ -1,62 +1,56 @@
-import React, { Component, createRef } from 'react'
+import React, { useContext, useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
 import { kebab_case } from '../utils';
 import { FormContext } from '../Form'
 
-class Checkbox extends Component {
-    constructor(props) {
-        super(props);
-        this.elemRef = createRef();
-    }
+function Checkbox({
+                      label,
+                      name,
+                      defaultChecked,
+                      checked,
+                      defaultValue,
+                      value,
+                      disabled,
+                      autoFocus,
+                      required,
+                  }) {
 
-    componentDidMount() {
-        const { name } = this.props;
-        const { onMount } = this.context;
+    const { onMount, onChange } = useContext(FormContext);
 
-        onMount({
-            name,
-            type: 'checkbox',
-            ref: this.elemRef.current,
-        });
-    }
+    const elemRef = useRef();
 
-    render() {
-        const {
-            label,
-            name,
-            defaultChecked,
-            checked,
-            defaultValue,
-            value,
-            disabled,
-            autoFocus,
-            required,
-        } = this.props;
+    useEffect(() => {
+        if (elemRef.current !== undefined) {
+            onMount({
+                name,
+                type: 'checkbox',
+                ref: elemRef.current,
+            });
+        }
+    }, [elemRef]);
 
-        const { onChange } = this.context;
-        const id = `checkbox_${name}_${kebab_case(label)}`;
-        return (
-            <div>
-                <input
-                    ref={this.elemRef}
-                    type="checkbox"
-                    name={name}
-                    id={id}
-                    onChange={onChange}
+    const id = `checkbox_${name}_${kebab_case(label)}`;
 
-                    autoFocus={autoFocus}
-                    required={required}
-                    disabled={disabled}
-                    defaultChecked={defaultChecked || checked}
-                    defaultValue={defaultValue || value || id}
-                />
-                {label && <label htmlFor={id}>{label}</label>}
-            </div>
-        );
-    }
+    return (
+        <div>
+            <input
+                ref={elemRef}
+                type="checkbox"
+                name={name}
+                id={id}
+                onChange={onChange}
+
+                autoFocus={autoFocus}
+                required={required}
+                disabled={disabled}
+                defaultChecked={defaultChecked || checked}
+                defaultValue={defaultValue || value || id}
+            />
+            {label && <label htmlFor={id}>{label}</label>}
+        </div>
+    );
+
 }
-
-Checkbox.contextType = FormContext;
 
 Checkbox.propTypes = {
     name: PropTypes.string.isRequired,
