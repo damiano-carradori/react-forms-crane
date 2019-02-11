@@ -1,45 +1,39 @@
-import React, { Component, createRef } from 'react'
+import React, { useContext, useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
 import { FormContext } from '../Form'
 
-class TextArea extends Component {
-    constructor(props) {
-        super(props);
-        this.elemRef = createRef();
-    }
+function TextArea({
+                      name,
+                      cols,
+                      rows,
+                      defaultValue,
+                      value,
+                      readOnly,
+                      wrap,
+                      disabled,
+                      maxLength,
+                      autoFocus,
+                      placeholder,
+                      required,
+                  }) {
+    const { onMount, onChange } = useContext(FormContext);
 
-    componentDidMount() {
-        const { name } = this.props;
-        const { onMount } = this.context;
+    const elemRef = useRef();
 
-        onMount({
-            name,
-            type: 'textarea',
-            ref: this.elemRef.current,
-        });
-    }
+    useEffect(() => {
+        if (elemRef.current !== undefined) {
+            onMount({
+                name,
+                type: 'textarea',
+                ref: elemRef.current,
+            });
+        }
+    }, [elemRef]);
 
-    render() {
-        const {
-            name,
-            cols,
-            rows,
-            defaultValue,
-            value,
-            readOnly,
-            wrap,
-            disabled,
-            maxLength,
-            autoFocus,
-            placeholder,
-            required,
-        } = this.props;
-
-        const { onChange } = this.context;
-        return (
-            <div>
+    return (
+        <div>
                 <textarea
-                    ref={this.elemRef}
+                    ref={elemRef}
                     onChange={onChange}
 
                     cols={cols}
@@ -54,12 +48,9 @@ class TextArea extends Component {
                     placeholder={placeholder}
                     required={required}
                 />
-            </div>
-        );
-    }
+        </div>
+    );
 }
-
-TextArea.contextType = FormContext;
 
 TextArea.propTypes = {
     name: PropTypes.string.isRequired,
