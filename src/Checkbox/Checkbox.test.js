@@ -1,31 +1,35 @@
+jest.mock('../Form');
 import React from 'react'
-import { mount } from 'enzyme';
-import Checkbox from './Checkbox'
-import Form, { FormContext } from '../Form';
-import renderer from 'react-test-renderer'
-import getElementWithContext from 'react-test-context-provider'
-import { FormContextProvider } from '../Form/FormContext';
+import { shallow } from 'enzyme';
+import Checkbox from './Checkbox';
+import { kebab_case } from '../utils';
 
 describe('Checkbox', () => {
 
-    it('should create the input and set props correctly', function () {
+    it('should create correctly the input with the right props', function () {
+        const name = 'checkbox-name';
+        const value = 'Checkbox value';
+        const label = 'Checkbox label';
+        const id = `checkbox_${name}_${kebab_case(label)}`;
 
-        // const element = getElementWithContext(FormContext, <Checkbox name="test" value={value} disabled/>);
-        // const component = renderer.create(element)
+        const wrapper = shallow(
+            <Checkbox
+                name={name}
+                value={value}
+                label={label}
+            />,
+            { disableLifecycleMethods: true },
+        );
 
-        // console.log(element)
+        const c = wrapper.find('input');
+        const l = wrapper.find('label');
 
-        // const value = 'Button value';
-        // const onClick = jest.fn();
-        const wrapper = mount(<FormContextProvider>
-            <Checkbox name="test" value={value} disabled/>
-        </FormContextProvider>);
-
-
-        // expect(wrapper.find('input').prop('type')).toBe('button');
-        // expect(wrapper.find('input').prop('value')).toBe(value);
-        // expect(wrapper.find('input').prop('onClick')).toEqual(onClick);
-        // expect(wrapper.find('input').prop('disabled')).toBeTruthy();
+        expect(c.prop('type')).toBe('checkbox');
+        expect(c.prop('name')).toBe(name);
+        expect(c.prop('defaultValue')).toBe(value);
+        expect(c.prop('id')).toBe(id);
+        expect(l.text()).toBe(label);
+        expect(l.prop('htmlFor')).toBe(id);
     });
 
 });
