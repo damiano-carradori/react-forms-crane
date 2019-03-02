@@ -1,82 +1,94 @@
 import React from 'react'
-import { render, cleanup } from 'react-testing-library'
-import 'jest-dom/extend-expect'
-import { FormContext, FormContextProvider } from './FormContext'
+import { shallow } from 'enzyme';
+import { FormContextProvider } from './FormContext';
 
+describe('FormContextProvider', () => {
 
-describe('testing the FormContext', () => {
-    afterEach(cleanup);
-    it('should get value from provider', function () {
-
-        const tree = (
-            <FormContextProvider>
-                <FormContext.Consumer>
-                    {({
-                          onSubmit,
-                          onChange,
-                          onMount,
-                      }) => {
-                        return null;
-                    }
-                    }
-                </FormContext.Consumer>
-            </FormContextProvider>
+    it('should create a context provider with the right value', function () {
+        const wrapper = shallow(
+            <FormContextProvider/>,
         );
-        const { debug, getByText, getByTestId } = render(tree);
-        debug()
-        // expect().toHaveTextContent('My Name Is: C3P0')
+
+        const providerValue = wrapper.find(FormContext.Provider).prop('value');
+
+        expect(typeof providerValue.onSubmit).toBe('function');
+        expect(typeof providerValue.onChange).toBe('function');
+        expect(typeof providerValue.onMount).toBe('function');
+        expect(typeof providerValue.fields).toBe('object');
+        expect(providerValue.fields).toEqual({});
+        expect(typeof providerValue.values).toBe('object');
+        expect(providerValue.values).toEqual({});
+    });
+
+    it('should add a field and its value on mount', function () {
+        const field = {
+            name: 'field',
+            type: 'text',
+            ref: {
+                value: 'value',
+            },
+        };
+
+        const wrapper = shallow(
+            <FormContextProvider/>,
+        );
+        const instance = wrapper.instance();
+
+        instance.onMount(field);
+
+        expect(wrapper.state('fields')).toEqual({ [field.name]: field });
+        expect(wrapper.state('values')).toEqual({ [field.name]: field.ref.value });
 
     });
-});
 
-/**
- * Test default values by rendering a context consumer without a
- * matching provider
- */
-test('NameConsumer shows default value', () => {
-    const { getByText } = render(<NameConsumer/>);
-    expect(getByText(/^My Name Is:/)).toHaveTextContent('My Name Is: Unknown')
-});
+    it('should change a field value on change', function () {
+        const field = {
+            name: 'field',
+            type: 'text',
+            ref: {
+                value: 'value',
+            },
+        };
 
-/**
- * To test a component tree that uses a context consumer but not the provider,
- * wrap the tree with a matching provider
- */
-test('NameConsumer shows value from provider', () => {
-    const tree = (
-        <NameContext.Provider value="C3P0">
-            <NameConsumer/>
-        </NameContext.Provider>
-    );
-    const { getByText } = render(tree);
-    expect(getByText(/^My Name Is:/)).toHaveTextContent('My Name Is: C3P0')
-});
+        const wrapper = shallow(
+            <FormContextProvider/>,
+        );
+        const instance = wrapper.instance();
 
-/**
- * To test a component that provides a context value, render a matching
- * consumer as the child
- */
-test('NameProvider composes full name from first, last', () => {
-    const tree = (
-        <NameProvider first="Boba" last="Fett">
-            <NameContext.Consumer>
-                {value => <span>Received: {value}</span>}
-            </NameContext.Consumer>
-        </NameProvider>
-    );
-    const { getByText } = render(tree);
-    expect(getByText(/^Received:/).textContent).toBe('Received: Boba Fett')
-});
+        instance.onMount(field);
 
-/**
- * A tree containing both a providers and consumer can be rendered normally
- */
-test('NameProvider/Consumer shows name of character', () => {
-    const tree = (
-        <NameProvider first="Leia" last="Organa">
-            <NameConsumer/>
-        </NameProvider>
-    );
-    const { getByText } = render(tree);
-    expect(getByText(/^My Name Is:/).textContent).toBe('My Name Is: Leia Organa')
+        const changeEvent = {
+            target: {
+                name: 'field',
+                value: 'changed value',
+            },
+        };
+
+        instance.onChange(changeEvent);
+
+        expect(wrapper.state('fields')).toEqual({ [field.name]: field });
+        expect(wrapper.state('values')).toEqual({ [field.name]: changeEvent.target.value });
+    });
+
+    it('should call the onSubmit function with the fields values on submit', function () {
+        const onSubmit = jest.fn();
+        const field = {
+            name: 'field',
+            type: 'text',
+            ref: {
+                value: 'value',
+            },
+        };
+        const event = { preventDefault: () => {} };
+
+        const wrapper = shallow(
+            <FormContextProvider onSubmit={onSubmit}/>,
+        );
+        const instance = wrapper.instance();
+
+        instance.onMount(field);
+        instance.onSubmit(event);
+
+        expect(onSubmit).toHaveBeenLastCalledWith({ [field.name]: field.ref.value });
+    });
 });
