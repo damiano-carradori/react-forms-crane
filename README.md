@@ -1,8 +1,40 @@
-# React Forms-crane 🏗️
+# React Forms-crane 🏗️ [![Build Status](https://travis-ci.com/damiano-carradori/react-forms-crane.svg?branch=master)](https://travis-ci.com/damiano-carradori/react-forms-crane)
 
 ![npm bundle size](https://img.shields.io/bundlephobia/min/react-forms-crane.svg?style=for-the-badge) ![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/damiano-carradori/react-forms-crane/master.svg?style=for-the-badge) ![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/damiano-carradori/react-forms-crane/HOOKS.svg?style=for-the-badge)
 
-### Available Fields
+## Installation
+
+#### Latest
+```javascript
+$ npm install react-forms-crane
+```
+#### With hooks
+```javascript
+$ npm install react-forms-crane@hooks
+```
+
+## How to use
+
+```javascript
+import React from 'react';
+import Form from 'react-forms-crane';
+
+function App(){
+    const onSubmit = ({firstName, lastName}) => {
+        alert(`Hello ${firstName} ${lastName}!`)
+    };
+    
+    return(
+        <Form onSubmit={onSubmit}>
+            <Form.Text name="firstName"/>
+            <Form.Text name="lastName"/>
+            <Form.Submit/>
+        </Form>
+    )
+}
+```
+
+## Available Fields
 
 - [x] Text
 - [x] Checkbox
@@ -15,7 +47,7 @@
 - [x] Submit
 - [x] Reset
 
-### Missing fields
+## Missing fields
 
 - [ ] Search
 - [ ] Number
@@ -32,7 +64,7 @@
 - [ ] Month
 - [ ] Week
 
-### Other elements
+## Other elements
 
 - [ ] Fieldset
 - [ ] Legend
