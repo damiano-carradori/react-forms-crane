@@ -3,3 +3,6 @@ install:
   - npm ci
 script:
   - npm t
+cache:
+  directories:
+    - "$HOME/.npm"
