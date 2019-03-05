@@ -26,8 +26,8 @@ function App(){
     
     return(
         <Form onSubmit={onSubmit}>
-            <Form.Text name="firstName"/>
-            <Form.Text name="lastName"/>
+            <Form.Text name="firstName" placeholder="Insert your first name"/>
+            <Form.Text name="lastName" placeholder="Insert your last name"/>
             <Form.Submit/>
         </Form>
     )
