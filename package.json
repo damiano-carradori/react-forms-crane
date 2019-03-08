@@ -13,7 +13,9 @@
   "license": "MIT",
   "scripts": {
     "start": "webpack --watch",
+    "storybook": "start-storybook -p 9001 -c .storybook",
     "build": "webpack",
+    "build-storybook": "build-storybook -c .storybook -o docs",
     "test": "jest"
   },
   "dependencies": {},
