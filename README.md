@@ -17,7 +17,7 @@ $ npm install react-forms-crane@hooks
 
 ```javascript
 import React from 'react';
-import Form from 'react-forms-crane';
+import Form, { Text, Submit } from 'react-forms-crane';
 
 function App(){
     const onSubmit = ({firstName, lastName}) => {
@@ -26,9 +26,9 @@ function App(){
     
     return(
         <Form onSubmit={onSubmit}>
-            <Form.Text name="firstName" placeholder="Insert your first name"/>
-            <Form.Text name="lastName" placeholder="Insert your last name"/>
-            <Form.Submit/>
+            <Text name="firstName" placeholder="Insert your first name" />
+            <Text name="lastName" placeholder="Insert your last name" />
+            <Submit />
         </Form>
     )
 }
