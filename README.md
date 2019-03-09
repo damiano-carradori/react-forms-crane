@@ -2,14 +2,16 @@
 
 ![npm bundle size](https://img.shields.io/bundlephobia/min/react-forms-crane.svg?style=for-the-badge) ![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/damiano-carradori/react-forms-crane/master.svg?style=for-the-badge) ![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/damiano-carradori/react-forms-crane/HOOKS.svg?style=for-the-badge)
 
+#### [Check the library on Storybook](https://damiano-carradori.github.io/react-forms-crane/.)
+
 ## Installation
 
 #### Latest
-```javascript
+```bash
 $ npm install react-forms-crane
 ```
 #### With hooks
-```javascript
+```bash
 $ npm install react-forms-crane@hooks
 ```
 
@@ -32,6 +34,8 @@ function App(){
         </Form>
     )
 }
+
+export default App;
 ```
 
 ## Available Fields
