@@ -5,6 +5,3 @@ install:
   - npm i
 script:
   - npm t
-cache:
-  directories:
-    - "$HOME/.npm"
