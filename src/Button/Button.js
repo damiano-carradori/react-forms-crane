@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { Wrapper, StyledInput } from './style'
 
 class Button extends Component {
     render() {
@@ -10,15 +11,15 @@ class Button extends Component {
         } = this.props;
 
         return (
-            <div>
-                <input
+            <Wrapper>
+                <StyledInput
                     type="button"
                     onClick={onClick}
 
                     value={value}
                     disabled={disabled}
                 />
-            </div>
+            </Wrapper>
         );
     }
 }
@@ -29,7 +30,6 @@ Button.propTypes = {
     onClick: PropTypes.func,
 };
 
-Button.defaultProps = {
-};
+Button.defaultProps = {};
 
 export default Button
