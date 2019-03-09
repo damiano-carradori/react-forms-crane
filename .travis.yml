@@ -1,10 +1,7 @@
 language: node_js
 node_js:
-  - "node"
+  - "10.15.3"
 install:
   - npm i
 script:
   - npm t
-cache:
-  directories:
-    - "$HOME/.npm"
