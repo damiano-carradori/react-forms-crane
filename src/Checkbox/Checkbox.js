@@ -60,6 +60,7 @@ Checkbox.contextType = FormContext;
 
 Checkbox.propTypes = {
     name: PropTypes.string.isRequired,
+    label: PropTypes.string,
     defaultValue: PropTypes.string,
     value: PropTypes.string,
     readOnly: PropTypes.bool,
@@ -70,6 +71,8 @@ Checkbox.propTypes = {
     required: PropTypes.bool,
 };
 
-Checkbox.defaultProps = {};
+Checkbox.defaultProps = {
+    label: '',
+};
 
 export default Checkbox
