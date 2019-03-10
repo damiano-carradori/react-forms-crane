@@ -1,5 +1,6 @@
 import React, { Component, createRef } from 'react'
 import PropTypes from 'prop-types'
+import { Wrapper, StyledTextArea } from './style';
 import { FormContext } from '../Form'
 
 class TextArea extends Component {
@@ -37,8 +38,8 @@ class TextArea extends Component {
 
         const { onChange } = this.context;
         return (
-            <div>
-                <textarea
+            <Wrapper>
+                <StyledTextArea
                     ref={this.elemRef}
                     onChange={onChange}
 
@@ -54,7 +55,7 @@ class TextArea extends Component {
                     placeholder={placeholder}
                     required={required}
                 />
-            </div>
+            </Wrapper>
         );
     }
 }
