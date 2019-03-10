@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { Wrapper, StyledInput } from './style'
 
 class Submit extends Component {
     render() {
@@ -10,15 +11,15 @@ class Submit extends Component {
         } = this.props;
 
         return (
-            <div>
-                <input
+            <Wrapper>
+                <StyledInput
                     type="submit"
 
                     value={value}
                     disabled={disabled}
                     autoFocus={autoFocus}
                 />
-            </div>
+            </Wrapper>
         );
     }
 }
