@@ -11,10 +11,13 @@ const disabledHover = css`
   animation: 500ms ${shake} ease-out;
 `;
 
+const disabledPlaceholder = css`
+  color: currentColor;
+`;
+
 export const Wrapper = styled.div`
   display: flex;
 `;
-
 
 export const StyledInput = styled.input`
   display: flex;
@@ -37,6 +40,10 @@ export const StyledInput = styled.input`
                 
   &:hover{
     ${({ disabled }) => disabled && disabledHover}
+  }
+    
+  &::placeholder{
+    ${({ disabled }) => disabled && disabledPlaceholder}
   }
   
   &:focus{
