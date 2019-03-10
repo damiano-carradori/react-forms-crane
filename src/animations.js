@@ -10,13 +10,13 @@ export const shake = keyframes`
   16.67%,
   50%,
   83.33% {
-    -webkit-transform: translate3d(-10px, 0, 0);
-    transform: translate3d(-10px, 0, 0);
+    -webkit-transform: translate3d(-6px, 0, 0);
+    transform: translate3d(-6px, 0, 0);
   }
 
   33%,
   66.67% {
-    -webkit-transform: translate3d(10px, 0, 0);
-    transform: translate3d(10px, 0, 0);
+    -webkit-transform: translate3d(6px, 0, 0);
+    transform: translate3d(6px, 0, 0);
   }
 `;
