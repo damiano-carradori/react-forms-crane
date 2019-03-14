@@ -1,10 +1,15 @@
 import React, { Component, createRef } from 'react'
 import PropTypes from 'prop-types'
+import { Wrapper, HiddenInput, StyledInput, InputButton, InputPlaceholder } from './style'
 import { FormContext } from '../Form'
 
 class File extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            files: null,
+        };
+        this.onFileChange = this.onFileChange.bind(this);
         this.elemRef = createRef();
     }
 
@@ -19,6 +24,12 @@ class File extends Component {
         });
     }
 
+    onFileChange(e) {
+        const { onChange } = this.context;
+        this.setState({ files: e.target.files });
+        onChange(e);
+    }
+
     render() {
         const {
             name,
@@ -29,16 +40,23 @@ class File extends Component {
             autoFocus,
             required,
         } = this.props;
+        const { files } = this.state;
 
-        const { onChange } = this.context;
+        const buttonText = label || 'Choose a file';
+
+        const hasFile = files && files.length;
+        const placeholderText = hasFile ?
+            files.length > 1 ? `${files.length} files chosen` : files[0].name :
+            'No file chosen';
+
         const id = `file_${name}`;
         return (
-            <div>
-                <input
+            <Wrapper>
+                <HiddenInput
                     ref={this.elemRef}
                     type="file"
                     id={id}
-                    onChange={onChange}
+                    onChange={this.onFileChange}
 
                     name={name}
                     accept={accept}
@@ -47,8 +65,11 @@ class File extends Component {
                     autoFocus={autoFocus}
                     required={required}
                 />
-                {label && <label htmlFor={id}>{label}</label>}
-            </div>
+                <StyledInput htmlFor={id} disabled={disabled}>
+                    <InputButton disabled={disabled}>{buttonText}</InputButton>
+                    <InputPlaceholder>{placeholderText}</InputPlaceholder>
+                </StyledInput>
+            </Wrapper>
         );
     }
 }
