@@ -1,7 +1,8 @@
 import React, { Component, createRef } from 'react'
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 import { kebab_case } from '../utils';
-import { FormContext } from '../Form'
+import { FormContext } from '../Form';
+import { HiddenInput, StyledInput, StyledRadio, InputLabel } from './style';
 
 class RadioButton extends Component {
     constructor(props) {
@@ -37,7 +38,7 @@ class RadioButton extends Component {
         const id = `radio_${name}_${kebab_case(label)}`;
         return (
             <div>
-                <input
+                <HiddenInput
                     ref={this.elemRef}
                     type="radio"
                     name={name}
@@ -50,7 +51,10 @@ class RadioButton extends Component {
                     defaultChecked={defaultChecked || checked}
                     defaultValue={defaultValue || value || id}
                 />
-                {label && <label htmlFor={id}>{label}</label>}
+                <StyledInput htmlFor={id} disabled={disabled}>
+                    <StyledRadio disabled={disabled}/>
+                    <InputLabel disabled={disabled}>{label}</InputLabel>
+                </StyledInput>
             </div>
         );
     }
