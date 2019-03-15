@@ -2,6 +2,7 @@ import React, { Component, createRef } from 'react'
 import PropTypes from 'prop-types'
 import { kebab_case } from '../utils';
 import { FormContext } from '../Form'
+import { Wrapper, HiddenInput, StyledInput, StyledCheckbox, InputLabel } from './style'
 
 class Checkbox extends Component {
     constructor(props) {
@@ -36,8 +37,8 @@ class Checkbox extends Component {
         const { onChange } = this.context;
         const id = `checkbox_${name}_${kebab_case(label)}`;
         return (
-            <div>
-                <input
+            <Wrapper>
+                <HiddenInput
                     ref={this.elemRef}
                     type="checkbox"
                     name={name}
@@ -50,8 +51,11 @@ class Checkbox extends Component {
                     defaultChecked={defaultChecked || checked}
                     defaultValue={defaultValue || value || id}
                 />
-                {label && <label htmlFor={id}>{label}</label>}
-            </div>
+                <StyledInput htmlFor={id} disabled={disabled}>
+                    <StyledCheckbox disabled={disabled}/>
+                    <InputLabel disabled={disabled}>{label}</InputLabel>
+                </StyledInput>
+            </Wrapper>
         );
     }
 }
