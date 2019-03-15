@@ -4,7 +4,7 @@ import { getTextColorForBackground } from '../styleUtils';
 import { shake } from '../animations';
 
 const backgroundColor = '#fff';
-const radioColor = '#00afed';
+const radioColor = '#504eff';
 const disabledRadioColor = 'rgba(0,0,0,0.35)';
 
 const disabledHover = css`
