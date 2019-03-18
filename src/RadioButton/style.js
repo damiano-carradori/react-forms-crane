@@ -37,21 +37,22 @@ export const StyledInput = styled.label`
 `;
 
 export const StyledRadio = styled.div`
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
   flex-shrink: 0;
   transition: border ease-in-out 200ms;
-  border: 12px solid ${backgroundColor};
+  border: 10px solid ${backgroundColor};
   background-color: ${({ disabled }) => disabled ? disabledRadioColor : radioColor};
   box-shadow: 0 0 0 1px ${({ disabled }) => disabled ? disabledRadioColor : radioColor};
   
   ${HiddenInput}:checked + ${StyledInput} & {
-    border-width: 6px;
+    border-width: 4px;
   }
 `;
 
 export const InputLabel = styled.div`
+  font-size: 14px;
   line-height: 1.5;
   padding: 9px 15px;
   transition: border-color ease-in-out 250ms;
