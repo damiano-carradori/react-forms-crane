@@ -28,6 +28,7 @@ export const HiddenInput = styled.input`
 export const StyledInput = styled.label`
   display: flex;
   flex-grow: 1;
+  font-size: 14px;
   border: 1px solid rgba(0,0,0,.1);
   border-radius: 3px;
   cursor:  ${({ disabled }) => disabled ? 'not-allowed' : 'pointer'};
