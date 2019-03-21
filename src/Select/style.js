@@ -1,12 +1,10 @@
 import styled, { css } from 'styled-components';
-import { transparentize, ellipsis } from 'polished'
+import { ellipsis, transparentize } from 'polished'
 import { getTextColorForBackground } from '../styleUtils';
 import { shake } from '../animations';
 
-const buttonBackgroundColor = '#fff';
 const backgroundColor = '#f7f5fa';
 const disabledBackgroundColor = '#f5f5f5';
-const borderColor = '#00afed';
 const selectedColor = '#504eff';
 
 const disabledHover = css`
