@@ -1,5 +1,5 @@
 import React from 'react'
-import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import Reset from './Reset'
 
 describe('Reset', () => {
@@ -7,7 +7,7 @@ describe('Reset', () => {
     it('should create correctly the input with the right props', function () {
         const value = 'Reset value';
 
-        const wrapper = shallow(<Reset value={value} />);
+        const wrapper = mount(<Reset value={value} />);
 
         const i = wrapper.find('input');
 
