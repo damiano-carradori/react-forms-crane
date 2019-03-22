@@ -1,8 +1,8 @@
-jest.mock('../Form');
 import React from 'react'
-import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import Checkbox from './Checkbox';
 import { kebab_case } from '../utils';
+import { FormContextProvider } from '../Form/FormContext';
 
 describe('Checkbox', () => {
 
@@ -12,13 +12,14 @@ describe('Checkbox', () => {
         const label = 'Checkbox label';
         const id = `checkbox_${name}_${kebab_case(label)}`;
 
-        const wrapper = shallow(
-            <Checkbox
-                name={name}
-                value={value}
-                label={label}
-            />,
-            { disableLifecycleMethods: true },
+        const wrapper = mount(
+            <FormContextProvider onSubmit={jest.fn()}>
+                <Checkbox
+                    name={name}
+                    value={value}
+                    label={label}
+                />
+            </FormContextProvider>,
         );
 
         const c = wrapper.find('input');
