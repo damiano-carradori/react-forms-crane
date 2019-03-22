@@ -5,6 +5,12 @@ import { FormContextProvider } from '../Form/FormContext';
 
 storiesOf('Select', module)
     .addDecorator(storyFn => <FormContextProvider onSubmit={console.log}>{storyFn()}</FormContextProvider>)
-    .add('with text', () => (
-        <Select name="test" options={['option1','option2']}/>
+    .add('default', () => (
+        <Select name="test" options={['option1', 'option2']}/>
+    ))
+    .add('multiple', () => (
+        <Select name="test" options={['option1', 'option2']} multiple/>
+    ))
+    .add('disabled', () => (
+        <Select name="test" options={['option1', 'option2']} disabled/>
     ));

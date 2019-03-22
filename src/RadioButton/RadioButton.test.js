@@ -1,8 +1,8 @@
-jest.mock('../Form');
 import React from 'react'
-import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import RadioButton from './RadioButton';
 import { kebab_case } from '../utils';
+import { FormContextProvider } from '../Form/FormContext';
 
 describe('RadioButton', () => {
 
@@ -12,13 +12,14 @@ describe('RadioButton', () => {
         const label = 'RadioButton label';
         const id = `radio_${name}_${kebab_case(label)}`;
 
-        const wrapper = shallow(
-            <RadioButton
-                name={name}
-                value={value}
-                label={label}
-            />,
-            { disableLifecycleMethods: true },
+        const wrapper = mount(
+            <FormContextProvider onSubmit={jest.fn()}>
+                <RadioButton
+                    name={name}
+                    value={value}
+                    label={label}
+                />
+            </FormContextProvider>,
         );
 
         const i = wrapper.find('input');

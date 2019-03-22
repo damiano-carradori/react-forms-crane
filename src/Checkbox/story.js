@@ -5,6 +5,9 @@ import { FormContextProvider } from '../Form/FormContext';
 
 storiesOf('Checkbox', module)
     .addDecorator(storyFn => <FormContextProvider onSubmit={console.log}>{storyFn()}</FormContextProvider>)
-    .add('with text', () => (
+    .add('default', () => (
         <Checkbox name="test" value="test" label="test"/>
+    ))
+    .add('disabled', () => (
+        <Checkbox name="test" value="test" label="test" disabled checked />
     ));

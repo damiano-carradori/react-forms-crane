@@ -1,7 +1,7 @@
-jest.mock('../Form');
 import React from 'react'
-import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import Text from './Text';
+import { FormContextProvider } from '../Form/FormContext';
 
 describe('Text', () => {
 
@@ -9,12 +9,13 @@ describe('Text', () => {
         const name = 'text-name';
         const value = 'Text value';
 
-        const wrapper = shallow(
-            <Text
-                name={name}
-                defaultValue={value}
-            />,
-            { disableLifecycleMethods: true },
+        const wrapper = mount(
+            <FormContextProvider onSubmit={jest.fn()}>
+                <Text
+                    name={name}
+                    defaultValue={value}
+                />
+            </FormContextProvider>,
         );
 
         const i = wrapper.find('input');

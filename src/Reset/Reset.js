@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { Wrapper, StyledInput } from './style'
 
 class Reset extends Component {
     render() {
@@ -10,15 +11,15 @@ class Reset extends Component {
         } = this.props;
 
         return (
-            <div>
-                <input
+            <Wrapper>
+                <StyledInput
                     type="reset"
 
                     value={value}
                     disabled={disabled}
                     autoFocus={autoFocus}
                 />
-            </div>
+            </Wrapper>
         );
     }
 }

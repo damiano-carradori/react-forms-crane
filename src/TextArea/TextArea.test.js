@@ -1,7 +1,7 @@
-jest.mock('../Form');
 import React from 'react'
-import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import TextArea from './TextArea';
+import { FormContextProvider } from '../Form/FormContext';
 
 describe('TextArea', () => {
 
@@ -11,14 +11,15 @@ describe('TextArea', () => {
         const cols = 3;
         const rows = 3;
 
-        const wrapper = shallow(
-            <TextArea
-                name={name}
-                value={value}
-                cols={cols}
-                rows={rows}
-            />,
-            { disableLifecycleMethods: true },
+        const wrapper = mount(
+            <FormContextProvider onSubmit={jest.fn()}>
+                <TextArea
+                    name={name}
+                    value={value}
+                    cols={cols}
+                    rows={rows}
+                />
+            </FormContextProvider>,
         );
 
         const t = wrapper.find('textarea');

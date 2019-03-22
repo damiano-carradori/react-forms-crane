@@ -3,6 +3,12 @@ import { storiesOf } from '@storybook/react';
 import Submit from './Submit';
 
 storiesOf('Submit', module)
-    .add('with text', () => (
+    .add('default', () => (
         <Submit />
+    ))
+    .add('with custom value', () => (
+        <Submit value="submit this form now!" />
+    ))
+    .add('disabled', () => (
+        <Submit disabled />
     ));

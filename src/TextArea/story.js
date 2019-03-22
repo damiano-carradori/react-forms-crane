@@ -5,6 +5,9 @@ import { FormContextProvider } from '../Form/FormContext';
 
 storiesOf('TextArea', module)
     .addDecorator(storyFn => <FormContextProvider onSubmit={console.log}>{storyFn()}</FormContextProvider>)
-    .add('with text', () => (
-        <TextArea name="test" />
+    .add('default', () => (
+        <TextArea name="test" rows={4} placeholder="Write something here..." />
+    ))
+    .add('disabled', () => (
+        <TextArea name="test" rows={4} placeholder="Disabled field" disabled />
     ));

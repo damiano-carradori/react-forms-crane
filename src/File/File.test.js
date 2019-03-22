@@ -1,21 +1,20 @@
-jest.mock('../Form');
 import React from 'react'
-import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import File from './File';
+import { FormContextProvider } from '../Form/FormContext';
 
 describe('File', () => {
 
     it('should create correctly the input with the right props', function () {
         const name = 'file-name';
-        const label = 'File label';
         const id = `file_${name}`;
 
-        const wrapper = shallow(
-            <File
-                name={name}
-                label={label}
-            />,
-            { disableLifecycleMethods: true },
+        const wrapper = mount(
+            <FormContextProvider onSubmit={jest.fn()}>
+                <File
+                    name={name}
+                />
+            </FormContextProvider>,
         );
 
         const i = wrapper.find('input');
@@ -24,7 +23,6 @@ describe('File', () => {
         expect(i.prop('type')).toBe('file');
         expect(i.prop('name')).toBe(name);
         expect(i.prop('id')).toBe(id);
-        expect(l.text()).toBe(label);
         expect(l.prop('htmlFor')).toBe(id);
     });
 
