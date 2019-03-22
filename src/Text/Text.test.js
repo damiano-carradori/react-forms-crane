@@ -1,7 +1,7 @@
 import React from "react";
 import { mount } from "enzyme";
 import Text from "./Text";
-import { FormContextProvider } from "../Form/FormContext";
+import { FormContextProvider } from "../FormContext";
 
 describe("Text", () => {
     it("should create correctly the input with the right props", function() {

@@ -7,7 +7,7 @@ import {
     InputButton,
     InputPlaceholder,
 } from "./style";
-import { FormContext } from "../Form";
+import { FormContext } from "../FormContext";
 
 class File extends Component {
     constructor(props) {

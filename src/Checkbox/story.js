@@ -1,7 +1,7 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import Checkbox from "./Checkbox";
-import { FormContextProvider } from "../Form/FormContext";
+import { FormContextProvider } from "../FormContext";
 
 storiesOf("Checkbox", module)
     .addDecorator(storyFn => (

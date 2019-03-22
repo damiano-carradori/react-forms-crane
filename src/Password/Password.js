@@ -1,7 +1,7 @@
 import React, { Component, createRef } from "react";
 import PropTypes from "prop-types";
 import { Wrapper, StyledInput } from "./style";
-import { FormContext } from "../Form";
+import { FormContext } from "../FormContext";
 
 class Password extends Component {
     constructor(props) {

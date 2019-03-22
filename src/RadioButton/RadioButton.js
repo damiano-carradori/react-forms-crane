@@ -1,7 +1,7 @@
 import React, { Component, createRef } from "react";
 import PropTypes from "prop-types";
 import { kebab_case } from "../utils";
-import { FormContext } from "../Form";
+import { FormContext } from "../FormContext";
 import { HiddenInput, StyledInput, StyledRadio, InputLabel } from "./style";
 
 class RadioButton extends Component {

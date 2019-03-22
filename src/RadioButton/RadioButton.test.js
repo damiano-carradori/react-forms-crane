@@ -2,7 +2,7 @@ import React from "react";
 import { mount } from "enzyme";
 import RadioButton from "./RadioButton";
 import { kebab_case } from "../utils";
-import { FormContextProvider } from "../Form/FormContext";
+import { FormContextProvider } from "../FormContext";
 
 describe("RadioButton", () => {
     it("should create correctly the input with the right props", function() {

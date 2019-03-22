@@ -1,7 +1,7 @@
 import React from "react";
 import { mount } from "enzyme";
 import Select from "./Select";
-import { FormContextProvider } from "../Form/FormContext";
+import { FormContextProvider } from "../FormContext";
 
 describe("Select", () => {
     it("should create correctly the select with the right props", function() {
