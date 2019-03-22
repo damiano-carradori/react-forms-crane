@@ -1,7 +1,7 @@
-jest.mock('../Form');
 import React from 'react'
-import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import Select from './Select';
+import { FormContextProvider } from '../Form/FormContext';
 
 describe('Select', () => {
 
@@ -23,13 +23,14 @@ describe('Select', () => {
             },
         ];
 
-        const wrapper = shallow(
-            <Select
-                name={name}
-                value={value}
-                options={options}
-            />,
-            { disableLifecycleMethods: true },
+        const wrapper = mount(
+            <FormContextProvider onSubmit={jest.fn()}>
+                <Select
+                    name={name}
+                    value={value}
+                    options={options}
+                />,
+            </FormContextProvider>,
         );
 
         const s = wrapper.find('select');
