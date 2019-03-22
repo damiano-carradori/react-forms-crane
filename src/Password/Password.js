@@ -1,7 +1,7 @@
-import React, { Component, createRef } from 'react'
-import PropTypes from 'prop-types'
-import { Wrapper, StyledInput } from './style'
-import { FormContext } from '../Form'
+import React, { Component, createRef } from "react";
+import PropTypes from "prop-types";
+import { Wrapper, StyledInput } from "./style";
+import { FormContext } from "../Form";
 
 class Password extends Component {
     constructor(props) {
@@ -15,7 +15,7 @@ class Password extends Component {
 
         onMount({
             name,
-            type: 'password',
+            type: "password",
             ref: this.elemRef.current,
         });
     }
@@ -42,7 +42,6 @@ class Password extends Component {
                     ref={this.elemRef}
                     type="password"
                     onChange={onChange}
-
                     name={name}
                     defaultValue={defaultValue}
                     readOnly={readOnly}
@@ -69,7 +68,7 @@ Password.propTypes = {
     disabled: PropTypes.bool,
     size: PropTypes.number,
     maxLength: PropTypes.number,
-    autoComplete: PropTypes.oneOf(['on', 'off']),
+    autoComplete: PropTypes.oneOf(["on", "off"]),
     autoFocus: PropTypes.bool,
     pattern: PropTypes.string,
     placeholder: PropTypes.string,
@@ -77,7 +76,7 @@ Password.propTypes = {
 };
 
 Password.defaultProps = {
-    autoComplete: 'on',
+    autoComplete: "on",
 };
 
-export default Password
+export default Password;

@@ -1,5 +1,5 @@
-const path = require('path');
+const path = require("path");
 
 module.exports = {
-    setupFilesAfterEnv: [path.resolve(__dirname, 'src/setupTests.js')],
+    setupFilesAfterEnv: [path.resolve(__dirname, "src/setupTests.js")],
 };

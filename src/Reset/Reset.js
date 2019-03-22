@@ -1,20 +1,15 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import { Wrapper, StyledInput } from './style'
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { Wrapper, StyledInput } from "./style";
 
 class Reset extends Component {
     render() {
-        const {
-            value,
-            disabled,
-            autoFocus,
-        } = this.props;
+        const { value, disabled, autoFocus } = this.props;
 
         return (
             <Wrapper>
                 <StyledInput
                     type="reset"
-
                     value={value}
                     disabled={disabled}
                     autoFocus={autoFocus}
@@ -32,4 +27,4 @@ Reset.propTypes = {
 
 Reset.defaultProps = {};
 
-export default Reset
+export default Reset;

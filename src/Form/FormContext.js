@@ -1,5 +1,5 @@
-import React, { Component, createContext } from 'react'
-import { mapObject } from '../utils';
+import React, { Component, createContext } from "react";
+import { mapObject } from "../utils";
 
 export const FormContext = createContext(null);
 
@@ -17,7 +17,7 @@ export class FormContextProvider extends Component {
             onMount: this.onMount,
             fields: {},
             values: {},
-        }
+        };
     }
 
     shouldComponentUpdate(nextProps) {
@@ -31,13 +31,17 @@ export class FormContextProvider extends Component {
         const { onSubmit } = this.props;
 
         const returnValues = mapObject(values, value => {
-            if (typeof value !== 'object' || value === null || Array.isArray(value)) {
+            if (
+                typeof value !== "object" ||
+                value === null ||
+                Array.isArray(value)
+            ) {
                 return value;
             }
             if (Object.keys(value).length === 1) {
                 return Object.values(value)[0];
             }
-            return Object.keys(value).filter(item => value[item])
+            return Object.keys(value).filter(item => value[item]);
         });
 
         onSubmit(returnValues);
@@ -47,30 +51,29 @@ export class FormContextProvider extends Component {
         const { name, value, checked } = target;
 
         this.setState(({ fields, values }) => {
-
             let content = values[name];
 
             switch (fields[name].type) {
-                case 'checkbox':
+                case "checkbox":
                     content = {
                         ...content,
                         [value]: checked,
                     };
                     break;
-                case 'radio':
+                case "radio":
                     if (checked) {
                         content = value;
                     }
                     break;
-                case 'file':
+                case "file":
                     const { files } = target;
                     content = files;
                     break;
-                case 'select':
+                case "select":
                     const { multiple, selectedOptions } = target;
-                    content = multiple ?
-                        [...selectedOptions].map(o => o.value) :
-                        value;
+                    content = multiple
+                        ? [...selectedOptions].map(o => o.value)
+                        : value;
                     break;
                 default:
                     content = value;
@@ -81,7 +84,7 @@ export class FormContextProvider extends Component {
                     ...values,
                     [name]: content,
                 },
-            }
+            };
         });
     }
 
@@ -93,21 +96,21 @@ export class FormContextProvider extends Component {
             const { value } = ref;
 
             switch (type) {
-                case 'checkbox':
+                case "checkbox":
                     content = {
                         ...(values[name] && values[name]),
                         [value]: ref.checked,
                     };
                     break;
-                case 'radio':
+                case "radio":
                     content = values[name] || null;
                     if (ref.checked) {
                         content = value;
                     }
                     break;
-                case 'select':
+                case "select":
                     const { multiple } = ref;
-                    content = multiple ? [] : '';
+                    content = multiple ? [] : "";
                     break;
                 default:
                     content = value;
@@ -122,7 +125,7 @@ export class FormContextProvider extends Component {
                     ...values,
                     [name]: content,
                 },
-            }
+            };
         });
     }
 

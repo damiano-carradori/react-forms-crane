@@ -1,8 +1,14 @@
-import React, { Component, createRef } from 'react'
-import PropTypes from 'prop-types'
-import { kebab_case } from '../utils';
-import { FormContext } from '../Form'
-import { Wrapper, HiddenInput, StyledInput, StyledCheckbox, InputLabel } from './style'
+import React, { Component, createRef } from "react";
+import PropTypes from "prop-types";
+import { kebab_case } from "../utils";
+import { FormContext } from "../Form";
+import {
+    Wrapper,
+    HiddenInput,
+    StyledInput,
+    StyledCheckbox,
+    InputLabel,
+} from "./style";
 
 class Checkbox extends Component {
     constructor(props) {
@@ -16,7 +22,7 @@ class Checkbox extends Component {
 
         onMount({
             name,
-            type: 'checkbox',
+            type: "checkbox",
             ref: this.elemRef.current,
         });
     }
@@ -44,7 +50,6 @@ class Checkbox extends Component {
                     name={name}
                     id={id}
                     onChange={onChange}
-
                     autoFocus={autoFocus}
                     required={required}
                     disabled={disabled}
@@ -52,7 +57,7 @@ class Checkbox extends Component {
                     defaultValue={defaultValue || value || id}
                 />
                 <StyledInput htmlFor={id} disabled={disabled}>
-                    <StyledCheckbox disabled={disabled}/>
+                    <StyledCheckbox disabled={disabled} />
                     <InputLabel disabled={disabled}>{label}</InputLabel>
                 </StyledInput>
             </Wrapper>
@@ -76,7 +81,7 @@ Checkbox.propTypes = {
 };
 
 Checkbox.defaultProps = {
-    label: '',
+    label: "",
 };
 
-export default Checkbox
+export default Checkbox;
