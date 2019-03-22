@@ -1,7 +1,7 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import RadioButton from "./RadioButton";
-import { FormContextProvider } from "../Form/FormContext";
+import { FormContextProvider } from "../FormContext";
 
 storiesOf("RadioButton", module)
     .addDecorator(storyFn => (

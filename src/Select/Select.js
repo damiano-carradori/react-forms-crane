@@ -1,7 +1,7 @@
 import React, { Component, createRef } from "react";
 import PropTypes from "prop-types";
 import { CSSTransition } from "react-transition-group";
-import { FormContext } from "../Form";
+import { FormContext } from "../FormContext";
 import {
     HiddenSelect,
     OptionsWrapper,

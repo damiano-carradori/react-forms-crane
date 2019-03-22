@@ -1,7 +1,7 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import Password from "./Password";
-import { FormContextProvider } from "../Form/FormContext";
+import { FormContextProvider } from "../FormContext";
 
 storiesOf("Password", module)
     .addDecorator(storyFn => (

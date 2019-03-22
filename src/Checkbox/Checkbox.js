@@ -1,7 +1,7 @@
 import React, { Component, createRef } from "react";
 import PropTypes from "prop-types";
 import { kebab_case } from "../utils";
-import { FormContext } from "../Form";
+import { FormContext } from "../FormContext";
 import {
     Wrapper,
     HiddenInput,

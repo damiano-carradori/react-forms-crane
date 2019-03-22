@@ -1,7 +1,7 @@
 import React, { Component, createRef } from "react";
 import PropTypes from "prop-types";
 import { Wrapper, StyledTextArea } from "./style";
-import { FormContext } from "../Form";
+import { FormContext } from "../FormContext";
 
 class TextArea extends Component {
     constructor(props) {

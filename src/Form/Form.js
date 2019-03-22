@@ -1,5 +1,5 @@
 import React, { PureComponent } from "react";
-import { FormContext, FormContextProvider } from "./FormContext";
+import { FormContext, FormContextProvider } from "../FormContext";
 
 class Form extends PureComponent {
     render() {
