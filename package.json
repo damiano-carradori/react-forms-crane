@@ -16,6 +16,7 @@
     "storybook": "start-storybook -p 9001 -c .storybook",
     "build": "webpack",
     "build-storybook": "build-storybook -c .storybook -o docs",
+    "version": "rm -rf docs && npm run build-storybook && git add docs",
     "test": "jest"
   },
   "dependencies": {
