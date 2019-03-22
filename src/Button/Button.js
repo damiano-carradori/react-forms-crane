@@ -1,21 +1,16 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import { Wrapper, StyledInput } from './style'
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { Wrapper, StyledInput } from "./style";
 
 class Button extends Component {
     render() {
-        const {
-            value,
-            disabled,
-            onClick,
-        } = this.props;
+        const { value, disabled, onClick } = this.props;
 
         return (
             <Wrapper>
                 <StyledInput
                     type="button"
                     onClick={onClick}
-
                     value={value}
                     disabled={disabled}
                 />
@@ -32,4 +27,4 @@ Button.propTypes = {
 
 Button.defaultProps = {};
 
-export default Button
+export default Button;

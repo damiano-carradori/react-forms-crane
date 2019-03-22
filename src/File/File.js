@@ -1,7 +1,13 @@
-import React, { Component, createRef } from 'react'
-import PropTypes from 'prop-types'
-import { Wrapper, HiddenInput, StyledInput, InputButton, InputPlaceholder } from './style'
-import { FormContext } from '../Form'
+import React, { Component, createRef } from "react";
+import PropTypes from "prop-types";
+import {
+    Wrapper,
+    HiddenInput,
+    StyledInput,
+    InputButton,
+    InputPlaceholder,
+} from "./style";
+import { FormContext } from "../Form";
 
 class File extends Component {
     constructor(props) {
@@ -19,7 +25,7 @@ class File extends Component {
 
         onMount({
             name,
-            type: 'file',
+            type: "file",
             ref: this.elemRef.current,
         });
     }
@@ -42,12 +48,14 @@ class File extends Component {
         } = this.props;
         const { files } = this.state;
 
-        const buttonText = label || 'Choose a file';
+        const buttonText = label || "Choose a file";
 
         const hasFile = files && files.length;
-        const placeholderText = hasFile ?
-            files.length > 1 ? `${files.length} files chosen` : files[0].name :
-            'No file chosen';
+        const placeholderText = hasFile
+            ? files.length > 1
+                ? `${files.length} files chosen`
+                : files[0].name
+            : "No file chosen";
 
         const id = `file_${name}`;
         return (
@@ -57,7 +65,6 @@ class File extends Component {
                     type="file"
                     id={id}
                     onChange={this.onFileChange}
-
                     name={name}
                     accept={accept}
                     multiple={multiple}
@@ -88,4 +95,4 @@ File.propTypes = {
 
 File.defaultProps = {};
 
-export default File
+export default File;

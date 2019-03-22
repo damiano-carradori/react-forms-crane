@@ -1,9 +1,16 @@
-import React, { Component, createRef } from 'react'
-import PropTypes from 'prop-types'
-import { CSSTransition } from 'react-transition-group'
-import { FormContext } from '../Form'
-import { HiddenSelect, OptionsWrapper, SelectPlaceholder, StyledOption, StyledSelect, Wrapper } from './style';
-import { filterObjectKeys } from '../utils';
+import React, { Component, createRef } from "react";
+import PropTypes from "prop-types";
+import { CSSTransition } from "react-transition-group";
+import { FormContext } from "../Form";
+import {
+    HiddenSelect,
+    OptionsWrapper,
+    SelectPlaceholder,
+    StyledOption,
+    StyledSelect,
+    Wrapper,
+} from "./style";
+import { filterObjectKeys } from "../utils";
 
 class Select extends Component {
     constructor(props) {
@@ -25,7 +32,7 @@ class Select extends Component {
 
         onMount({
             name,
-            type: 'select',
+            type: "select",
             ref: this.elemRef.current,
         });
     }
@@ -38,28 +45,29 @@ class Select extends Component {
             [...this.elemRef.current.options]
                 .map(o => o.value)
                 .map((option, i) => {
-                    this.elemRef.current.options[i].selected = optionsToSelect.includes(option);
+                    this.elemRef.current.options[
+                        i
+                    ].selected = optionsToSelect.includes(option);
                 });
         } else {
             this.elemRef.current.value = selected.value;
-
         }
-        const event = document.createEvent('HTMLEvents');
-        event.initEvent('change', true, false);
+        const event = document.createEvent("HTMLEvents");
+        event.initEvent("change", true, false);
         this.elemRef.current.dispatchEvent(event);
     }
 
     toggleOptions() {
         const { disabled } = this.props;
         if (!disabled) {
-            this.setState(({ open }) => ({ open: !open }))
+            this.setState(({ open }) => ({ open: !open }));
         }
     }
 
     selectOption(option) {
         const { multiple } = this.props;
         let value, label;
-        if ('string' === typeof option) {
+        if ("string" === typeof option) {
             value = option;
             label = option;
         } else {
@@ -71,16 +79,19 @@ class Select extends Component {
             this.setState(({ selected }) => {
                 if (selected[label]) {
                     return {
-                        selected: filterObjectKeys(selected, key => key !== label),
-                    }
+                        selected: filterObjectKeys(
+                            selected,
+                            key => key !== label
+                        ),
+                    };
                 }
                 return {
                     selected: {
                         ...selected,
                         [label]: value,
                     },
-                }
-            })
+                };
+            });
         } else {
             this.setState({ selected: { value, label }, open: false });
         }
@@ -88,21 +99,25 @@ class Select extends Component {
 
     renderOption(option, index) {
         let value, label;
-        if ('string' === typeof option) {
+        if ("string" === typeof option) {
             value = option;
             label = option;
         } else {
             value = option.value;
             label = option.label;
         }
-        return <option key={index} value={value}>{label}</option>
+        return (
+            <option key={index} value={value}>
+                {label}
+            </option>
+        );
     }
 
     renderStyledOption(option, index) {
         const { multiple } = this.props;
         const { selected } = this.state;
         let value, label;
-        if ('string' === typeof option) {
+        if ("string" === typeof option) {
             value = option;
             label = option;
         } else {
@@ -114,12 +129,7 @@ class Select extends Component {
                 key={index}
                 onClick={() => this.selectOption(option)}
                 multiple={multiple}
-                selected={
-                    multiple ?
-                        selected[label] :
-                        selected.value === value
-
-                }
+                selected={multiple ? selected[label] : selected.value === value}
             >
                 {label}
             </StyledOption>
@@ -143,9 +153,9 @@ class Select extends Component {
 
         const renderedOptions = options.map(this.renderOption);
         const styledOptions = options.map(this.renderStyledOption);
-        const placeholder = multiple ?
-            Object.keys(selected).join(', ') || 'Select...' :
-            (selected && selected.label) || 'Select...';
+        const placeholder = multiple
+            ? Object.keys(selected).join(", ") || "Select..."
+            : (selected && selected.label) || "Select...";
 
         return (
             <Wrapper>
@@ -153,7 +163,6 @@ class Select extends Component {
                     ref={this.elemRef}
                     onChange={onChange}
                     name={name}
-
                     multiple={multiple}
                     value={value}
                     size={size}
@@ -177,9 +186,7 @@ class Select extends Component {
                         mountOnEnter
                         unmountOnExit
                     >
-                        <OptionsWrapper>
-                            {styledOptions}
-                        </OptionsWrapper>
+                        <OptionsWrapper>{styledOptions}</OptionsWrapper>
                     </CSSTransition>
                 </StyledSelect>
             </Wrapper>
@@ -191,13 +198,15 @@ Select.contextType = FormContext;
 
 Select.propTypes = {
     name: PropTypes.string.isRequired,
-    options: PropTypes.arrayOf(PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.shape({
-            value: PropTypes.string,
-            label: PropTypes.string,
-        }),
-    ])),
+    options: PropTypes.arrayOf(
+        PropTypes.oneOfType([
+            PropTypes.string,
+            PropTypes.shape({
+                value: PropTypes.string,
+                label: PropTypes.string,
+            }),
+        ])
+    ),
     value: PropTypes.string,
     multiple: PropTypes.bool,
     autoFocus: PropTypes.bool,
@@ -210,4 +219,4 @@ Select.defaultProps = {
     options: [],
 };
 
-export default Select
+export default Select;

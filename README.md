@@ -7,10 +7,13 @@
 ## Installation
 
 #### Latest
+
 ```bash
 $ npm install react-forms-crane
 ```
+
 #### With hooks
+
 ```bash
 $ npm install react-forms-crane@hooks
 ```
@@ -18,21 +21,21 @@ $ npm install react-forms-crane@hooks
 ## How to use
 
 ```javascript
-import React from 'react';
-import Form, { Text, Submit } from 'react-forms-crane';
+import React from "react";
+import Form, { Text, Submit } from "react-forms-crane";
 
-function App(){
-    const onSubmit = ({firstName, lastName}) => {
-        alert(`Hello ${firstName} ${lastName}!`)
+function App() {
+    const onSubmit = ({ firstName, lastName }) => {
+        alert(`Hello ${firstName} ${lastName}!`);
     };
-    
-    return(
+
+    return (
         <Form onSubmit={onSubmit}>
             <Text name="firstName" placeholder="Insert your first name" />
             <Text name="lastName" placeholder="Insert your last name" />
             <Submit />
         </Form>
-    )
+    );
 }
 
 export default App;
@@ -40,35 +43,35 @@ export default App;
 
 ## Available Fields
 
-- [x] Text
-- [x] Checkbox
-- [x] RadioButton
-- [x] Password
-- [x] Select
-- [x] TextArea
-- [x] File
-- [x] Button
-- [x] Submit
-- [x] Reset
+-   [x] Text
+-   [x] Checkbox
+-   [x] RadioButton
+-   [x] Password
+-   [x] Select
+-   [x] TextArea
+-   [x] File
+-   [x] Button
+-   [x] Submit
+-   [x] Reset
 
 ## Missing fields
 
-- [ ] Search
-- [ ] Number
-- [ ] Email
-- [ ] Hidden
-- [ ] Color
-- [ ] Image
-- [ ] Range
-- [ ] Url
-- [ ] Date
-- [ ] DateTime
-- [ ] DateTimeLocal
-- [ ] Time
-- [ ] Month
-- [ ] Week
+-   [ ] Search
+-   [ ] Number
+-   [ ] Email
+-   [ ] Hidden
+-   [ ] Color
+-   [ ] Image
+-   [ ] Range
+-   [ ] Url
+-   [ ] Date
+-   [ ] DateTime
+-   [ ] DateTimeLocal
+-   [ ] Time
+-   [ ] Month
+-   [ ] Week
 
 ## Other elements
 
-- [ ] Fieldset
-- [ ] Legend
+-   [ ] Fieldset
+-   [ ] Legend

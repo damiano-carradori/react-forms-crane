@@ -1,8 +1,8 @@
-import React, { Component, createRef } from 'react'
-import PropTypes from 'prop-types';
-import { kebab_case } from '../utils';
-import { FormContext } from '../Form';
-import { HiddenInput, StyledInput, StyledRadio, InputLabel } from './style';
+import React, { Component, createRef } from "react";
+import PropTypes from "prop-types";
+import { kebab_case } from "../utils";
+import { FormContext } from "../Form";
+import { HiddenInput, StyledInput, StyledRadio, InputLabel } from "./style";
 
 class RadioButton extends Component {
     constructor(props) {
@@ -16,7 +16,7 @@ class RadioButton extends Component {
 
         onMount({
             name,
-            type: 'radio',
+            type: "radio",
             ref: this.elemRef.current,
         });
     }
@@ -44,7 +44,6 @@ class RadioButton extends Component {
                     name={name}
                     id={id}
                     onChange={onChange}
-
                     autoFocus={autoFocus}
                     required={required}
                     disabled={disabled}
@@ -52,7 +51,7 @@ class RadioButton extends Component {
                     defaultValue={defaultValue || value || id}
                 />
                 <StyledInput htmlFor={id} disabled={disabled}>
-                    <StyledRadio disabled={disabled}/>
+                    <StyledRadio disabled={disabled} />
                     <InputLabel disabled={disabled}>{label}</InputLabel>
                 </StyledInput>
             </div>
@@ -78,4 +77,4 @@ RadioButton.propTypes = {
 
 RadioButton.defaultProps = {};
 
-export default RadioButton
+export default RadioButton;

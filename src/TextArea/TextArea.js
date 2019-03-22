@@ -1,7 +1,7 @@
-import React, { Component, createRef } from 'react'
-import PropTypes from 'prop-types'
-import { Wrapper, StyledTextArea } from './style';
-import { FormContext } from '../Form'
+import React, { Component, createRef } from "react";
+import PropTypes from "prop-types";
+import { Wrapper, StyledTextArea } from "./style";
+import { FormContext } from "../Form";
 
 class TextArea extends Component {
     constructor(props) {
@@ -15,7 +15,7 @@ class TextArea extends Component {
 
         onMount({
             name,
-            type: 'textarea',
+            type: "textarea",
             ref: this.elemRef.current,
         });
     }
@@ -42,7 +42,6 @@ class TextArea extends Component {
                 <StyledTextArea
                     ref={this.elemRef}
                     onChange={onChange}
-
                     cols={cols}
                     rows={rows}
                     wrap={wrap}
@@ -66,7 +65,7 @@ TextArea.propTypes = {
     name: PropTypes.string.isRequired,
     cols: PropTypes.number,
     rows: PropTypes.number,
-    wrap: PropTypes.oneOf(['soft', 'hard']),
+    wrap: PropTypes.oneOf(["soft", "hard"]),
     defaultValue: PropTypes.string,
     value: PropTypes.string,
     readOnly: PropTypes.bool,
@@ -79,4 +78,4 @@ TextArea.propTypes = {
 
 TextArea.defaultProps = {};
 
-export default TextArea
+export default TextArea;

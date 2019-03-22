@@ -1,5 +1,5 @@
-import React, { PureComponent } from 'react'
-import { FormContext, FormContextProvider } from './FormContext'
+import React, { PureComponent } from "react";
+import { FormContext, FormContextProvider } from "./FormContext";
 
 class Form extends PureComponent {
     render() {
@@ -14,8 +14,8 @@ class Form extends PureComponent {
                     )}
                 </FormContext.Consumer>
             </FormContextProvider>
-        )
+        );
     }
 }
 
-export default Form
+export default Form;

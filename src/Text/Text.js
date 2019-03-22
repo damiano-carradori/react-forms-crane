@@ -1,7 +1,7 @@
-import React, { Component, createRef } from 'react'
-import PropTypes from 'prop-types'
-import { Wrapper, StyledInput } from './style'
-import { FormContext } from '../Form'
+import React, { Component, createRef } from "react";
+import PropTypes from "prop-types";
+import { Wrapper, StyledInput } from "./style";
+import { FormContext } from "../Form";
 
 class Text extends Component {
     constructor(props) {
@@ -15,7 +15,7 @@ class Text extends Component {
 
         onMount({
             name,
-            type: 'text',
+            type: "text",
             ref: this.elemRef.current,
         });
     }
@@ -42,7 +42,6 @@ class Text extends Component {
                     ref={this.elemRef}
                     type="text"
                     onChange={onChange}
-
                     name={name}
                     defaultValue={defaultValue}
                     readOnly={readOnly}
@@ -69,7 +68,7 @@ Text.propTypes = {
     disabled: PropTypes.bool,
     size: PropTypes.number,
     maxLength: PropTypes.number,
-    autoComplete: PropTypes.oneOf(['on', 'off']),
+    autoComplete: PropTypes.oneOf(["on", "off"]),
     autoFocus: PropTypes.bool,
     pattern: PropTypes.string,
     placeholder: PropTypes.string,
@@ -78,4 +77,4 @@ Text.propTypes = {
 
 Text.defaultProps = {};
 
-export default Text
+export default Text;
