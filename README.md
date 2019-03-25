@@ -1,3 +1,4 @@
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/80685b356655484487ddb247e18d607d)](https://app.codacy.com/app/damiano.carradori/react-forms-crane?utm_source=github.com&utm_medium=referral&utm_content=damiano-carradori/react-forms-crane&utm_campaign=Badge_Grade_Settings)
 # React Forms-crane 🏗️ [![Build Status](https://travis-ci.com/damiano-carradori/react-forms-crane.svg?branch=master)](https://travis-ci.com/damiano-carradori/react-forms-crane)
 
 ![npm bundle size](https://img.shields.io/bundlephobia/min/react-forms-crane.svg?style=for-the-badge) ![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/damiano-carradori/react-forms-crane/master.svg?style=for-the-badge) ![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/damiano-carradori/react-forms-crane/HOOKS.svg?style=for-the-badge)
