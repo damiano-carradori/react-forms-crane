@@ -1,17 +1,11 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from "react";
+import PropTypes from "prop-types";
 
-function Reset({
-                   value,
-                   disabled,
-                   autoFocus,
-               }) {
-
+function Reset({ value, disabled, autoFocus }) {
     return (
         <div>
             <input
                 type="reset"
-
                 value={value}
                 disabled={disabled}
                 autoFocus={autoFocus}
@@ -28,4 +22,4 @@ Reset.propTypes = {
 
 Reset.defaultProps = {};
 
-export default Reset
+export default Reset;

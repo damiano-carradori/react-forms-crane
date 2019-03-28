@@ -1,20 +1,19 @@
-import React, { useContext, useEffect, useRef } from 'react'
-import PropTypes from 'prop-types'
-import { kebab_case } from '../utils';
-import { FormContext } from '../Form'
+import React, { useContext, useEffect, useRef } from "react";
+import PropTypes from "prop-types";
+import { kebab_case } from "../utils";
+import { FormContext } from "../Form";
 
 function RadioButton({
-                         label,
-                         name,
-                         defaultChecked,
-                         checked,
-                         defaultValue,
-                         value,
-                         disabled,
-                         autoFocus,
-                         required,
-                     }) {
-
+    label,
+    name,
+    defaultChecked,
+    checked,
+    defaultValue,
+    value,
+    disabled,
+    autoFocus,
+    required,
+}) {
     const { onMount, onChange } = useContext(FormContext);
 
     const elemRef = useRef();
@@ -23,7 +22,7 @@ function RadioButton({
         if (elemRef.current !== undefined) {
             onMount({
                 name,
-                type: 'radio',
+                type: "radio",
                 ref: elemRef.current,
             });
         }
@@ -38,7 +37,6 @@ function RadioButton({
                 name={name}
                 id={id}
                 onChange={onChange}
-
                 autoFocus={autoFocus}
                 required={required}
                 disabled={disabled}
@@ -68,4 +66,4 @@ RadioButton.propTypes = {
 
 RadioButton.defaultProps = {};
 
-export default RadioButton
+export default RadioButton;

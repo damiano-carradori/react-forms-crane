@@ -1,17 +1,16 @@
-import React, { useContext, useEffect, useRef } from 'react'
-import PropTypes from 'prop-types'
-import { FormContext } from '../Form'
+import React, { useContext, useEffect, useRef } from "react";
+import PropTypes from "prop-types";
+import { FormContext } from "../Form";
 
 function File({
-                  name,
-                  label,
-                  accept,
-                  multiple,
-                  disabled,
-                  autoFocus,
-                  required,
-              }) {
-
+    name,
+    label,
+    accept,
+    multiple,
+    disabled,
+    autoFocus,
+    required,
+}) {
     const { onMount, onChange } = useContext(FormContext);
 
     const elemRef = useRef();
@@ -20,7 +19,7 @@ function File({
         if (elemRef.current !== undefined) {
             onMount({
                 name,
-                type: 'file',
+                type: "file",
                 ref: elemRef.current,
             });
         }
@@ -34,7 +33,6 @@ function File({
                 type="file"
                 id={id}
                 onChange={onChange}
-
                 name={name}
                 accept={accept}
                 multiple={multiple}
@@ -59,4 +57,4 @@ File.propTypes = {
 
 File.defaultProps = {};
 
-export default File
+export default File;

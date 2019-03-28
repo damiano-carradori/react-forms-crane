@@ -1,15 +1,5 @@
-import React from 'react'
-import { FormContext, FormContextProvider } from './FormContext'
-import Text from '../Text'
-import Checkbox from '../Checkbox'
-import RadioButton from '../RadioButton'
-import Password from '../Password'
-import Select from '../Select'
-import TextArea from '../TextArea'
-import File from '../File'
-import Button from '../Button'
-import Submit from '../Submit'
-import Reset from '../Reset'
+import React from "react";
+import { FormContext, FormContextProvider } from "../FormContext";
 
 function Form(props) {
     const { className, children, onSubmit } = props;
@@ -23,19 +13,7 @@ function Form(props) {
                 )}
             </FormContext.Consumer>
         </FormContextProvider>
-    )
-
+    );
 }
 
-Form.Text = Text;
-Form.Checkbox = Checkbox;
-Form.RadioButton = RadioButton;
-Form.Password = Password;
-Form.Select = Select;
-Form.TextArea = TextArea;
-Form.File = File;
-Form.Button = Button;
-Form.Submit = Submit;
-Form.Reset = Reset;
-
-export default Form
+export default Form;

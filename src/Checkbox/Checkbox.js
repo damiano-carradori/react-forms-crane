@@ -1,20 +1,19 @@
-import React, { useContext, useEffect, useRef } from 'react'
-import PropTypes from 'prop-types'
-import { kebab_case } from '../utils';
-import { FormContext } from '../Form'
+import React, { useContext, useEffect, useRef } from "react";
+import PropTypes from "prop-types";
+import { kebab_case } from "../utils";
+import { FormContext } from "../Form";
 
 function Checkbox({
-                      label,
-                      name,
-                      defaultChecked,
-                      checked,
-                      defaultValue,
-                      value,
-                      disabled,
-                      autoFocus,
-                      required,
-                  }) {
-
+    label,
+    name,
+    defaultChecked,
+    checked,
+    defaultValue,
+    value,
+    disabled,
+    autoFocus,
+    required,
+}) {
     const { onMount, onChange } = useContext(FormContext);
 
     const elemRef = useRef();
@@ -23,7 +22,7 @@ function Checkbox({
         if (elemRef.current !== undefined) {
             onMount({
                 name,
-                type: 'checkbox',
+                type: "checkbox",
                 ref: elemRef.current,
             });
         }
@@ -39,7 +38,6 @@ function Checkbox({
                 name={name}
                 id={id}
                 onChange={onChange}
-
                 autoFocus={autoFocus}
                 required={required}
                 disabled={disabled}
@@ -49,7 +47,6 @@ function Checkbox({
             {label && <label htmlFor={id}>{label}</label>}
         </div>
     );
-
 }
 
 Checkbox.propTypes = {
@@ -66,4 +63,4 @@ Checkbox.propTypes = {
 
 Checkbox.defaultProps = {};
 
-export default Checkbox
+export default Checkbox;

@@ -1,11 +1,10 @@
-import React, { memo, createContext, useState } from 'react'
-import { mapObject } from '../utils';
+import React, { memo, createContext, useState } from "react";
+import { mapObject } from "../utils";
 
 export const FormContext = createContext(null);
 
 export const FormContextProvider = memo(
     function FormContextProvider(props) {
-
         const [fields, setFields] = useState({});
         const [values, setValues] = useState({});
 
@@ -14,13 +13,13 @@ export const FormContextProvider = memo(
             const { onSubmit } = props;
 
             const returnValues = mapObject(values, value => {
-                if (typeof value !== 'object' || value === null) {
+                if (typeof value !== "object" || value === null) {
                     return value;
                 }
                 if (Object.keys(value).length === 1) {
                     return Object.values(value)[0];
                 }
-                return Object.keys(value).filter(item => value[item])
+                return Object.keys(value).filter(item => value[item]);
             });
 
             onSubmit(returnValues);
@@ -32,18 +31,18 @@ export const FormContextProvider = memo(
             let content = values[name];
 
             switch (fields[name].type) {
-                case 'checkbox':
+                case "checkbox":
                     content = {
                         ...content,
                         [value]: checked,
                     };
                     break;
-                case 'radio':
+                case "radio":
                     if (checked) {
                         content = value;
                     }
                     break;
-                case 'file':
+                case "file":
                     const { files } = target;
                     content = files;
                     break;
@@ -55,24 +54,23 @@ export const FormContextProvider = memo(
                 ...values,
                 [name]: content,
             });
-
         };
 
-        const onMount = (field) => {
-            console.log('mounted');
+        const onMount = field => {
+            console.log("mounted");
             const { name, type, ref } = field;
 
             let content;
             const { value } = ref;
 
             switch (type) {
-                case 'checkbox':
+                case "checkbox":
                     content = {
                         ...(values[name] && values[name]),
                         [value]: ref.checked,
                     };
                     break;
-                case 'radio':
+                case "radio":
                     content = values[name] || null;
                     if (ref.checked) {
                         content = value;
@@ -89,7 +87,7 @@ export const FormContextProvider = memo(
             setValues({
                 ...values,
                 [name]: content,
-            })
+            });
         };
 
         const { children } = props;
@@ -107,7 +105,6 @@ export const FormContextProvider = memo(
                 {children}
             </FormContext.Provider>
         );
-
     },
-    (oldProps, newProps) => oldProps.onSubmit !== newProps.onSubmit,
+    (oldProps, newProps) => oldProps.onSubmit !== newProps.onSubmit
 );

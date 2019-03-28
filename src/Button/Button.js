@@ -1,19 +1,12 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from "react";
+import PropTypes from "prop-types";
 
-function Button({
-                    value,
-                    disabled,
-                    autoFocus,
-                    onClick,
-                }) {
-
+function Button({ value, disabled, autoFocus, onClick }) {
     return (
         <div>
             <input
                 type="button"
                 onClick={onClick}
-
                 value={value}
                 disabled={disabled}
                 autoFocus={autoFocus}
@@ -31,4 +24,4 @@ Button.propTypes = {
 
 Button.defaultProps = {};
 
-export default Button
+export default Button;

@@ -1,16 +1,11 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from "react";
+import PropTypes from "prop-types";
 
-function Submit({
-                    value,
-                    disabled,
-                    autoFocus,
-                }) {
+function Submit({ value, disabled, autoFocus }) {
     return (
         <div>
             <input
                 type="submit"
-
                 value={value}
                 disabled={disabled}
                 autoFocus={autoFocus}
@@ -27,4 +22,4 @@ Submit.propTypes = {
 
 Submit.defaultProps = {};
 
-export default Submit
+export default Submit;
