@@ -1,6 +1,13 @@
-import React, { useContext, useEffect, useRef } from "react";
+import React, { useState, useContext, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
-import { FormContext } from "../Form";
+import { FormContext } from "../FormContext";
+import {
+    Wrapper,
+    HiddenInput,
+    StyledInput,
+    InputButton,
+    InputPlaceholder,
+} from "./style";
 
 function File({
     name,
@@ -11,6 +18,8 @@ function File({
     autoFocus,
     required,
 }) {
+    const [files, setFiles] = useState(null);
+
     const { onMount, onChange } = useContext(FormContext);
 
     const elemRef = useRef();
@@ -25,14 +34,30 @@ function File({
         }
     }, [elemRef]);
 
+    const onFileChange = e => {
+        setFiles(e.target.files);
+        onChange(e);
+    };
+
+    const buttonText = label || "Choose a file";
+
+    const hasFile = files && files.length;
+
+    const placeholderText = hasFile
+        ? files.length > 1
+            ? `${files.length} files chosen`
+            : files[0].name
+        : "No file chosen";
+
     const id = `file_${name}`;
+
     return (
-        <div>
-            <input
+        <Wrapper>
+            <HiddenInput
                 ref={elemRef}
                 type="file"
                 id={id}
-                onChange={onChange}
+                onChange={onFileChange}
                 name={name}
                 accept={accept}
                 multiple={multiple}
@@ -40,8 +65,11 @@ function File({
                 autoFocus={autoFocus}
                 required={required}
             />
-            {label && <label htmlFor={id}>{label}</label>}
-        </div>
+            <StyledInput htmlFor={id} disabled={disabled}>
+                <InputButton disabled={disabled}>{buttonText}</InputButton>
+                <InputPlaceholder>{placeholderText}</InputPlaceholder>
+            </StyledInput>
+        </Wrapper>
     );
 }
 
