@@ -13,7 +13,11 @@ export const FormContextProvider = memo(
             const { onSubmit } = props;
 
             const returnValues = mapObject(values, value => {
-                if (typeof value !== "object" || value === null) {
+                if (
+                    typeof value !== "object" ||
+                    value === null ||
+                    Array.isArray(value)
+                ) {
                     return value;
                 }
                 if (Object.keys(value).length === 1) {
@@ -46,6 +50,12 @@ export const FormContextProvider = memo(
                     const { files } = target;
                     content = files;
                     break;
+                case "select":
+                    const { multiple, selectedOptions } = target;
+                    content = multiple
+                        ? [...selectedOptions].map(o => o.value)
+                        : value;
+                    break;
                 default:
                     content = value;
             }
@@ -57,7 +67,6 @@ export const FormContextProvider = memo(
         };
 
         const onMount = field => {
-            console.log("mounted");
             const { name, type, ref } = field;
 
             let content;
@@ -75,6 +84,10 @@ export const FormContextProvider = memo(
                     if (ref.checked) {
                         content = value;
                     }
+                    break;
+                case "select":
+                    const { multiple } = ref;
+                    content = multiple ? [] : "";
                     break;
                 default:
                     content = value;
