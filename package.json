@@ -18,6 +18,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "polished": "^3.1.0",
     "react-transition-group": "^2.7.1"
   },
   "peerDependencies": {
@@ -38,6 +39,7 @@
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-testing-library": "^6.0.3",
     "styled-components": "^4.2.0",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.3.0"
