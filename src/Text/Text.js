@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
-import { FormContext } from "../Form";
+import { FormContext } from "../FormContext";
+import { Wrapper, StyledInput } from "./style";
 
 function Text({
     name,
@@ -30,8 +31,8 @@ function Text({
     }, [elemRef]);
 
     return (
-        <div>
-            <input
+        <Wrapper>
+            <StyledInput
                 ref={elemRef}
                 type="text"
                 onChange={onChange}
@@ -47,7 +48,7 @@ function Text({
                 placeholder={placeholder}
                 required={required}
             />
-        </div>
+        </Wrapper>
     );
 }
 
