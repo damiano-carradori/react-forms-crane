@@ -1,16 +1,17 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Wrapper, StyledInput } from "./style";
 
 function Submit({ value, disabled, autoFocus }) {
     return (
-        <div>
-            <input
+        <Wrapper>
+            <StyledInput
                 type="submit"
                 value={value}
                 disabled={disabled}
                 autoFocus={autoFocus}
             />
-        </div>
+        </Wrapper>
     );
 }
 
