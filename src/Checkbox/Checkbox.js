@@ -1,7 +1,14 @@
 import React, { useContext, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import { kebab_case } from "../utils";
-import { FormContext } from "../Form";
+import { FormContext } from "../FormContext";
+import {
+    Wrapper,
+    HiddenInput,
+    StyledInput,
+    StyledCheckbox,
+    InputLabel,
+} from "./style";
 
 function Checkbox({
     label,
@@ -31,8 +38,8 @@ function Checkbox({
     const id = `checkbox_${name}_${kebab_case(label)}`;
 
     return (
-        <div>
-            <input
+        <Wrapper>
+            <HiddenInput
                 ref={elemRef}
                 type="checkbox"
                 name={name}
@@ -44,13 +51,17 @@ function Checkbox({
                 defaultChecked={defaultChecked || checked}
                 defaultValue={defaultValue || value || id}
             />
-            {label && <label htmlFor={id}>{label}</label>}
-        </div>
+            <StyledInput htmlFor={id} disabled={disabled}>
+                <StyledCheckbox disabled={disabled} />
+                <InputLabel disabled={disabled}>{label}</InputLabel>
+            </StyledInput>
+        </Wrapper>
     );
 }
 
 Checkbox.propTypes = {
     name: PropTypes.string.isRequired,
+    label: PropTypes.string,
     defaultValue: PropTypes.string,
     value: PropTypes.string,
     readOnly: PropTypes.bool,
@@ -61,6 +72,8 @@ Checkbox.propTypes = {
     required: PropTypes.bool,
 };
 
-Checkbox.defaultProps = {};
+Checkbox.defaultProps = {
+    label: "",
+};
 
 export default Checkbox;
