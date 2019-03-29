@@ -1,7 +1,14 @@
 import React, { useContext, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import { kebab_case } from "../utils";
-import { FormContext } from "../Form";
+import { FormContext } from "../FormContext";
+import {
+    Wrapper,
+    HiddenInput,
+    StyledInput,
+    StyledRadio,
+    InputLabel,
+} from "./style";
 
 function RadioButton({
     label,
@@ -30,8 +37,8 @@ function RadioButton({
 
     const id = `radio_${name}_${kebab_case(label)}`;
     return (
-        <div>
-            <input
+        <Wrapper>
+            <HiddenInput
                 ref={elemRef}
                 type="radio"
                 name={name}
@@ -43,12 +50,13 @@ function RadioButton({
                 defaultChecked={defaultChecked || checked}
                 defaultValue={defaultValue || value || id}
             />
-            {label && <label htmlFor={id}>{label}</label>}
-        </div>
+            <StyledInput htmlFor={id} disabled={disabled}>
+                <StyledRadio disabled={disabled} />
+                <InputLabel disabled={disabled}>{label}</InputLabel>
+            </StyledInput>
+        </Wrapper>
     );
 }
-
-RadioButton.contextType = FormContext;
 
 RadioButton.propTypes = {
     name: PropTypes.string.isRequired,
