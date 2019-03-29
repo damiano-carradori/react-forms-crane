@@ -73,5 +73,5 @@ export default App;
 
 ### Other elements
 
--   [x] Fieldset
--   [x] Legend
+-   [ ] Fieldset
+-   [ ] Legend
