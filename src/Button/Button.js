@@ -1,24 +1,23 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Wrapper, StyledInput } from "./style";
 
-function Button({ value, disabled, autoFocus, onClick }) {
+function Button({ value, disabled, onClick }) {
     return (
-        <div>
-            <input
+        <Wrapper>
+            <StyledInput
                 type="button"
                 onClick={onClick}
                 value={value}
                 disabled={disabled}
-                autoFocus={autoFocus}
             />
-        </div>
+        </Wrapper>
     );
 }
 
 Button.propTypes = {
     value: PropTypes.string.isRequired,
     disabled: PropTypes.bool,
-    autoFocus: PropTypes.bool,
     onClick: PropTypes.func,
 };
 
