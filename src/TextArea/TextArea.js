@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
-import { FormContext } from "../Form";
+import { FormContext } from "../FormContext";
+import { Wrapper, StyledTextArea } from "./style";
 
 function TextArea({
     name,
@@ -31,8 +32,8 @@ function TextArea({
     }, [elemRef]);
 
     return (
-        <div>
-            <textarea
+        <Wrapper>
+            <StyledTextArea
                 ref={elemRef}
                 onChange={onChange}
                 cols={cols}
@@ -47,7 +48,7 @@ function TextArea({
                 placeholder={placeholder}
                 required={required}
             />
-        </div>
+        </Wrapper>
     );
 }
 
