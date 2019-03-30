@@ -1,4 +1,4 @@
-import React, { memo, createContext, useState } from "react";
+import React, { memo, createContext, useState, useCallback } from "react";
 import { mapObject } from "../utils";
 
 export const FormContext = createContext(null);
@@ -60,13 +60,13 @@ export const FormContextProvider = memo(
                     content = value;
             }
 
-            setValues({
+            setValues(values => ({
                 ...values,
                 [name]: content,
-            });
+            }));
         };
 
-        const onMount = field => {
+        const onMount = useCallback(field => {
             const { name, type, ref } = field;
 
             let content;
@@ -93,15 +93,15 @@ export const FormContextProvider = memo(
                     content = value;
             }
 
-            setFields({
+            setFields(fields => ({
                 ...fields,
                 [name]: field,
-            });
-            setValues({
+            }));
+            setValues(values => ({
                 ...values,
                 [name]: content,
-            });
-        };
+            }));
+        }, []);
 
         const { children } = props;
 
